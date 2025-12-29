@@ -1,0 +1,196 @@
+{
+    "navbar": {
+        "topLinks": [
+            {
+                "label": "Crisis Watch",
+                "href": "/news"
+            },
+            {
+                "label": "Careers",
+                "href": "/careers"
+            },
+            {
+                "label": "Volunteer",
+                "href": "/volunteer"
+            }
+        ],
+        "mainLinks": [
+            {
+                "label": "About Us",
+                "href": "/about"
+            },
+            {
+                "label": "Our Work",
+                "href": "/work"
+            },
+            {
+                "label": "Campaigns",
+                "href": "/campaigns"
+            },
+            {
+                "label": "Contact Us",
+                "href": "/contact"
+            }
+        ],
+        "cta": {
+            "label": "Donate",
+            "href": "/donate"
+        }
+    },
+    "hero": {
+        "label": "Emergency Response",
+        "title": "Last Chance To\nDouble Your\nImpact",
+        "description": "Your donation helps us provide lifesaving support to families in crisis. Give today to make a difference.",
+        "image": "/images/hero-bg.jpg",
+        "cta": {
+            "label": "Donate Now",
+            "href": "/donate"
+        }
+    },
+    "heroSidebar": {
+        "title": "WORLD\nCAN'T\nIGNORE IN\n2026",
+        "description": "The IRC's Emergency Watchlist identifies the countries most likely to face a worsening humanitarian crisis. Learn what's happening and how to help.",
+        "ctaLabel": "READ NOW",
+        "ctaLink": "/watchlist"
+    },
+    "stats": {
+        "heading": "We help people survive, recover and rebuild their lives",
+        "description": "For over 90 years, the International Rescue Committee (IRC) has helped people affected by conflict and disaster. Today, we provide emergency relief wherever it's urgently needed, and help communities rebuild around the world and across the United States. In 2024 alone...",
+        "items": [
+            {
+                "icon": "education",
+                "number": "1.6 million",
+                "label": "children and youth enrolled in our learning programs"
+            },
+            {
+                "icon": "water",
+                "number": "2.8 million",
+                "label": "people gained access to clean water"
+            },
+            {
+                "icon": "health",
+                "number": "10.6 million",
+                "label": "patients received primary health care consultations"
+            },
+            {
+                "icon": "home",
+                "number": "60,000+",
+                "label": "people, including refugees and asylum seekers, received vital support in the U.S."
+            }
+        ]
+    },
+    "featuredStories": {
+        "heading": "News and featured stories",
+        "mainFeature": {
+            "image": "/hero-placeholder.png",
+            "tag": "Global crises",
+            "title": "The top 10 crises the world can't ignore in 2026",
+            "description": "The IRC's Emergency Watchlist identifies the countries most likely to face a worsening humanitarian crisis. Learn what's happening and how to help.",
+            "link": "/crises-2026"
+        },
+        "subFeatures": [
+            {
+                "image": "/hero-placeholder.png",
+                "tag": "Escalating conflict",
+                "title": "Crisis in Sudan: What is happening and how to help",
+                "link": "/sudan",
+                "linkText": "Learn more"
+            },
+            {
+                "image": "/hero-placeholder.png",
+                "tag": "Gaza",
+                "title": "Crisis in Gaza: What to know and how to help",
+                "link": "/gaza",
+                "linkText": "Read the article"
+            }
+        ],
+        "seeAll": "SEE THE LATEST"
+    },
+    "getInvolved": {
+        "heading": "Get involved",
+        "cards": [
+            {
+                "image": "/hero-placeholder.png",
+                "title": "Donate",
+                "description": "A donation will help ensure aid gets to people.",
+                "link": "/donate"
+            },
+            {
+                "image": "/hero-placeholder.png",
+                "title": "Join Rescue Collective",
+                "description": "A community of supporters helping refugees and displaced families rebuild their lives.",
+                "link": "/join"
+            },
+            {
+                "image": "/hero-placeholder.png",
+                "title": "Volunteer",
+                "description": "Volunteers play a critical role in helping refugees and immigrants thrive in the United States.",
+                "link": "/volunteer"
+            }
+        ]
+    },
+    "footer": {
+        "description": "Empowering communities and responding to crises around the world. To restore health, safety, education, and economic wellbeing.",
+        "sections": [
+            {
+                "heading": "Who We Are",
+                "links": [
+                    {
+                        "label": "About Us",
+                        "href": "/about"
+                    },
+                    {
+                        "label": "Leadership",
+                        "href": "/team"
+                    },
+                    {
+                        "label": "Financials",
+                        "href": "/financials"
+                    },
+                    {
+                        "label": "Careers",
+                        "href": "/careers"
+                    }
+                ]
+            },
+            {
+                "heading": "Our Work",
+                "links": [
+                    {
+                        "label": "Programs",
+                        "href": "/work"
+                    },
+                    {
+                        "label": "Countries",
+                        "href": "/where"
+                    },
+                    {
+                        "label": "Crisis Response",
+                        "href": "/crisis"
+                    }
+                ]
+            },
+            {
+                "heading": "Get Involved",
+                "links": [
+                    {
+                        "label": "Donate",
+                        "href": "/donate"
+                    },
+                    {
+                        "label": "Volunteer",
+                        "href": "/volunteer"
+                    },
+                    {
+                        "label": "Campaigns",
+                        "href": "/campaigns"
+                    },
+                    {
+                        "label": "Contact Us",
+                        "href": "/contact"
+                    }
+                ]
+            }
+        ]
+    }
+}

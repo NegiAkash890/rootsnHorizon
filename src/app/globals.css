@@ -1,42 +1,111 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Brand Colors - Roots & Horizon (Greener Lime) */
+  --primary: #95C11F;
+  /* Vivid Green-Lime */
+  --primary-hover: #AED581;
+  /* Lighter Green */
+  --secondary: #000000;
+  /* Deep Black */
+  --accent: #333333;
+  /* Dark Grey */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Neutrals */
+  --background: #FFFFFF;
+  --surface: #F4F4F4;
+  /* Light Grey Backgrounds */
+  --text-main: #000000;
+  --text-muted: #555555;
+  --text-inverted: #FFFFFF;
+  --border: #DDDDDD;
+
+  /* Typography */
+  --font-heading: 'akzidenz-grotesk', Arial, Helvetica, sans-serif;
+  --font-body: 'akzidenz-grotesk', Arial, Helvetica, sans-serif;
+
+  /* Spacing */
+  --container-width: 75rem;
+  /* 1200px */
+  --header-height: 2.5rem;
+  /* 40px */
+  /* Adjusted for TopBar + Navbar */
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+  font-family: var(--font-body);
   margin: 0;
+  padding: 0;
+  padding-top: var(--header-height);
+  /* Compensate for fixed header */
+  background-color: var(--background);
+  color: var(--text-main);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  margin: 0;
+  font-weight: 800;
+  /* Bolder headings */
+  /* Common in IRC style */
+  letter-spacing: -0.02em;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+button {
+  font-family: var(--font-heading);
+  cursor: pointer;
+}
+
+/* Utilities */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  /* 20px */
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  /* 14px 28px */
+  border-radius: 0;
+  /* Square buttons */
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--secondary);
+  /* Black text on yellow */
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: none;
+  /* remove lift */
+  opacity: 0.9;
+}
+
+.section {
+  padding: 5rem 0;
+  /* 80px */
 }

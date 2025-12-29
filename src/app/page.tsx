@@ -1,66 +1,86 @@
+import { client } from "@/sanity/client";
 import Image from "next/image";
+import Hero from "@/components/Hero/Hero";
+import StatsSection from "@/components/Stats/StatsSection";
+import FeaturedStories from "@/components/FeaturedStories/FeaturedStories";
+import GetInvolved from "@/components/GetInvolved/GetInvolved";
 import styles from "./page.module.css";
+import content from "@/data/siteContent.json"; // Fallback
 
-export default function Home() {
+async function getHomepageData() {
+  const query = `*[_type == "homepage"][0]{
+    hero->{
+      ...,
+      image { asset->{_id, url} }
+    },
+    heroSidebar->,
+    statsSection->{
+      ...,
+      stats[] {
+        ...,
+        icon { asset->{_id, url} }
+      }
+    },
+    featuredStoriesSection->{
+      ...,
+      mainFeature->{
+        ...,
+        image { asset->{_id, url} }
+      },
+      subFeatures[]->{
+        ...,
+        image { asset->{_id, url} }
+      }
+    },
+    getInvolvedSection->{
+      ...,
+      cards[] {
+        ...,
+        image { asset->{_id, url} }
+      }
+    }
+  }`;
+
+  try {
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error("Sanity fetch error:", error);
+    return null;
+  }
+}
+
+export default async function Home() {
+  const sanityData = await getHomepageData();
+
+  // Helper to merge or fallback
+  // If sanityData exists, we try to use it. If parts are missing, we might need fallback logic or just render empty/null.
+  // For now, let's pass the sanityData OR local content to components.
+  // We'll need to update components to accept props.
+  const heroData = sanityData?.hero || content.hero;
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className={styles.page}>
+      <div className={styles.topSection}>
+        <div className={styles.heroWrapper}>
+          <Hero data={heroData} />
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className={styles.heroImageWrapper}>
+          {/* Fallback image if Sanity data is missing or string path */}
+          <Image
+            src={heroData?.image?.asset?.url || (typeof heroData?.image === 'string' ? heroData.image : "/hero-placeholder.png")}
+            alt="Hero Image"
+            fill
+            className={styles.heroImage}
+            priority
+          />
         </div>
-      </main>
-    </div>
+      </div>
+      <div className={styles.main}>
+        <StatsSection data={sanityData?.statsSection || content.stats} />
+        <FeaturedStories data={sanityData?.featuredStoriesSection || content.featuredStories} />
+        <GetInvolved data={sanityData?.getInvolvedSection || content.getInvolved} />
+      </div>
+    </main>
   );
 }
