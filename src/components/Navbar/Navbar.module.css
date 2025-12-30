@@ -45,7 +45,7 @@
 
 /* Navbar Block */
 .navbar {
-    height: 85px;
+    height: 100px;
     /* 35px (top-bar) + 85px = 120px exactly */
     border-bottom: 1px solid var(--border);
     background-color: #000000;
@@ -93,10 +93,27 @@
     height: 100%;
     display: flex;
     align-items: center;
+    transition: color 0.3s ease;
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    /* Adjust based on height */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
 }
 
 .navbar__link:hover {
     color: var(--primary);
+}
+
+.navbar__link:hover::after {
+    width: 100%;
 }
 
 .navbar__btn {
@@ -128,11 +145,17 @@
         display: none;
     }
 
-    .navbar__toggle {
-        display: block;
+    .actions {
+        display: none;
+        /* Hide toggle and CTA button */
     }
 
     .top-bar {
         display: none;
+    }
+
+    .navbar__container {
+        justify-content: center;
+        /* Center the logo */
     }
 }

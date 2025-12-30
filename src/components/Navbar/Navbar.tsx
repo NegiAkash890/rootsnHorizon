@@ -47,7 +47,7 @@ const Navbar = ({ data }: { data: any }) => {
     return (
         <header className={styles.header}>
             {/* Top Utility Bar */}
-            <div className={styles['top-bar']}>
+            {/* <div className={styles['top-bar']}>
                 <div className={styles['top-bar__container']}>
                     {topLinks.map((link: any, index: number) => {
                         const { label, href } = getLinkData(link);
@@ -58,7 +58,7 @@ const Navbar = ({ data }: { data: any }) => {
                         );
                     })}
                 </div>
-            </div>
+            </div> */}
 
             {/* Main Navbar */}
             <nav className={styles.navbar}>

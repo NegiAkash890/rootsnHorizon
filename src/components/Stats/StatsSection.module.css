@@ -99,51 +99,114 @@
 
 @media (max-width: 900px) {
     .stats-section__grid {
-        display: flex;
-        overflow-x: auto;
-        gap: 20px;
-        padding-bottom: 20px;
-        margin-right: -20px;
-        padding-right: 20px;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* 2x2 grid for tablets/large phones */
+        gap: 30px;
+        overflow-x: visible;
+        /* No scroll */
+        padding-bottom: 0;
+        margin-right: 0;
+        padding-right: 0;
     }
 
     .stat-card {
-        min-width: 250px;
-        scroll-snap-align: start;
+        min-width: 0;
+        scroll-snap-align: none;
     }
 }
 
 @media (max-width: 600px) {
     .stats-section {
         padding: 40px 0;
-        /* Reduced from 80px */
+        /* Reduced vertical padding */
+    }
+
+    .stats-section__container {
+        padding: 0 20px;
+        /* Reduced side padding slightly */
     }
 
     .stats-section__heading {
-        font-size: 2rem;
-        /* Reduced from 3rem */
-        justify-content: center;
-        /* Center align title */
+        font-size: 1.75rem;
+        /* Reduced from 2.25rem */
+        justify-content: flex-start;
+        text-align: left;
+        line-height: 1.2;
     }
 
     .stats-section__header-group {
-        justify-content: center;
-        /* Center aligns title bar etc */
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .stats-section__description {
+        font-size: 1rem;
+        /* Reduced from 1.125rem */
+        line-height: 1.5;
+        margin-bottom: 30px;
+        text-align: left;
     }
 
     .stats-section__grid {
-        grid-template-columns: 1fr;
-        text-align: center;
+        display: flex;
+        /* Flex column is safer for stack */
+        flex-direction: column;
+        text-align: left;
         gap: 30px;
+        padding-bottom: 0;
+        margin-right: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .stat-card {
-        align-items: center;
+        align-items: flex-start;
+        flex-direction: row;
+        gap: 16px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 24px;
+        width: 100%;
+        /* Prevent overflow */
+        box-sizing: border-box;
+    }
+
+    .stat-card:last-child {
+        border-bottom: none;
     }
 
     .stat-card__icon-wrapper {
-        margin: 0 auto;
+        margin: 0;
+        width: 60px;
+        /* Reduced from 70px */
+        height: 60px;
+        min-width: 60px;
+        /* Fixed size to prevent squishing */
+    }
+
+    .stat-card__content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        /* Take remaining space */
+        min-width: 0;
+        /* Crucial for text wrapping in flex children */
+    }
+
+    .stat-card__icon {
+        font-size: 1.5rem;
+        /* Reduced */
+    }
+
+    .stat-card__number {
+        font-size: 1.75rem;
+        /* Reduced slightly to fit better */
+        margin-bottom: 4px;
+        line-height: 1.1;
+        /* Removed word-break: break-all to prevent awkward splits like 'mil-lion' */
+    }
+
+    .stat-card__text {
+        font-size: 0.9rem;
     }
 }

@@ -1,8 +1,11 @@
 import { type SchemaTypeDefinition } from 'sanity'
 import { statsSection, story, featuredStoriesSection, getInvolvedCard, getInvolvedSection, aboutSection, contactSection } from './sections'
 import { homepage } from './homepage'
-import { heroSection } from './hero'
+import { heroSection, heroSidebar } from './hero'
 import { navbar, footer } from './layout'
+
+import { contactSubmission } from './contactSubmission'
+import { aboutPage } from './aboutPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
     types: [
@@ -10,12 +13,15 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         navbar,
         footer,
         heroSection,
-        statsSection, // Now a document
-        featuredStoriesSection, // Now a document
-        getInvolvedSection, // Now a document
+        heroSidebar, // Added
+        statsSection,
+        featuredStoriesSection,
+        getInvolvedSection,
         aboutSection,
         contactSection,
         story,
-        getInvolvedCard
+        getInvolvedCard,
+        contactSubmission,
+        aboutPage
     ],
 }

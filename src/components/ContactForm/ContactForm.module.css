@@ -1,6 +1,6 @@
 .contact {
     padding: 5rem 1.25rem;
-    background-color: var(--surface);
+    background-color: #eee;
     position: relative;
     overflow: hidden;
 }
@@ -21,6 +21,7 @@
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: var(--text-main);
+    font-weight: 800;
 }
 
 .contact__subheading {
@@ -86,14 +87,66 @@
 
 @media (max-width: 600px) {
     .contact {
-        padding: 60px 20px;
+        padding: 40px 0;
+    }
+
+    .contact__container {
+        padding: 0 20px;
     }
 
     .contact__heading {
-        font-size: 2rem;
+        font-size: 1.75rem;
+        /* Reduced from 2.25rem */
+        margin-bottom: 16px;
+    }
+
+    .contact__subheading {
+        font-size: 1rem;
+        margin-bottom: 24px;
     }
 
     .form {
-        padding: 1.5rem;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin: 0;
+        border: 1px solid #eee;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form__label {
+        font-size: 0.85rem;
+    }
+
+    .form__input,
+    .form__textarea {
+        font-size: 16px;
+        /* 16px to prevent iOS zoom */
+        padding: 12px;
+        width: 100%;
+        box-sizing: border-box;
+        /* Prevent overflow */
+    }
+
+    .form__input.error,
+    .form__textarea.error {
+        border-color: #ff0000;
+        /* Bright red */
+        background-color: #fff0f0;
+    }
+
+    .form__error-text {
+        color: #ff0000;
+        /* Bright red */
+        font-size: 0.85rem;
+        margin-top: 6px;
+        font-weight: 500;
+        display: block;
+    }
+
+    .form__submit {
+        width: 100%;
+        padding: 16px;
+        box-sizing: border-box;
     }
 }

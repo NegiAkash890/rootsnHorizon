@@ -24,16 +24,6 @@
     object-fit: cover;
 }
 
-.hero__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 2;
-}
-
 .hero__content {
     width: 100%;
     z-index: 3;
@@ -114,33 +104,74 @@
 }
 
 @media (max-width: 900px) {
+
+    /* Image and overlay are now handled in page.module.css */
     .hero__bg-wrapper {
-        display: block;
+        display: none;
     }
 
     .hero__content {
         color: #fff;
+        position: relative;
+        z-index: 3;
+        padding: 40px 20px;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 450px;
+        box-sizing: border-box;
+    }
+
+    .hero__label {
+        font-size: 0.75rem;
+        /* Reduced */
+        padding: 4px 10px;
+        margin-bottom: 1rem;
+        background-color: var(--primary);
+        color: #000;
+        width: fit-content;
     }
 
     .hero__title {
         color: #fff;
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        /* Reduced from 2.75rem */
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        text-align: left;
+        overflow-wrap: break-word;
+        /* Prevent overflow */
+    }
+
+    .hero__title::before {
+        display: none;
     }
 
     .hero__description {
         color: #f0f0f0;
+        font-size: 1rem;
+        /* Reduced from 1.125rem */
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        max-width: 100%;
     }
 
     .hero {
-        min-height: auto;
-        padding: 40px 0;
+        min-height: 450px;
+        padding: 0;
+        align-items: stretch;
+        background-color: transparent;
+        /* Make transparent to show the image behind */
     }
 
-    .hero__content {
-        padding: 0 20px;
-    }
-
-    .hero__title {
-        font-size: 2.5rem;
+    .hero__btn {
+        width: 100%;
+        padding: 14px;
+        /* Slightly reduced padding */
+        font-size: 1rem;
     }
 }
 
@@ -157,6 +188,11 @@
 
     .hero__btn {
         width: 100%;
-        /* Full width button on mobile */
+        /* Full width */
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 14px 20px;
+        font-size: 1rem;
+        display: inline-flex;
     }
 }

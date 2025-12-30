@@ -24,6 +24,12 @@ export const homepage = defineType({
             to: [{ type: 'heroSection' }]
         }),
         defineField({
+            name: 'heroSidebar',
+            title: 'Hero Sidebar (Optional)',
+            type: 'reference',
+            to: [{ type: 'heroSidebar' }]
+        }),
+        defineField({
             name: 'statsSection',
             title: 'Stats Section',
             type: 'reference',

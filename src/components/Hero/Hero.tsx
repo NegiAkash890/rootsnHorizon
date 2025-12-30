@@ -7,16 +7,6 @@ const Hero = ({ data }: { data: any }) => {
 
     return (
         <section id="home" className={styles.hero}>
-            <div className={styles['hero__bg-wrapper']}>
-                <Image
-                    src={data.image || "/hero-placeholder.png"}
-                    alt="Hero Background"
-                    fill
-                    className={styles['hero__bg-image']}
-                    priority
-                />
-                <div className={styles['hero__overlay']}></div>
-            </div>
             <div className={styles['hero__content']}>
                 <div className={styles['hero__label']}>{label}</div>
                 <h2 className={styles['hero__title']}>

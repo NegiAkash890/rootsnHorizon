@@ -1,18 +1,45 @@
 .page {
   --background: #fafafa;
   --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   background-color: var(--background);
+  padding-top: var(--header-height);
+}
+
+.hero {
+  background-color: var(--primary);
+  padding: 80px 20px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px 100px;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
 .topSection {
@@ -20,10 +47,6 @@
   width: 100%;
   flex-direction: row;
   min-height: 600px;
-  padding-top: var(--header-height);
-  /* 120px */
-  background-color: #fff;
-  /* Match Hero background */
 }
 
 .heroWrapper {
@@ -48,6 +71,34 @@
 @media (max-width: 900px) {
   .topSection {
     flex-direction: column;
+    position: relative;
+    /* Context for absolute positioning */
+    min-height: 500px;
+  }
+
+  .heroImageWrapper {
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1;
+    /* Behind content */
+    min-height: auto;
+  }
+
+  .heroImageWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Solid black overlay */
+    z-index: 2;
+    /* Overlay on image */
   }
 
   .heroWrapper {
@@ -55,13 +106,9 @@
     max-width: 100%;
     flex: auto;
     min-height: auto;
-  }
-
-  .heroImageWrapper {
-    width: 100%;
-    max-width: 100%;
-    flex: auto;
-    min-height: 300px;
+    position: relative;
+    z-index: 3;
+    /* On top of image */
   }
 }
 
@@ -153,7 +200,7 @@ a.secondary {
 
 @media (max-width: 600px) {
   .main {
-    padding: 48px 24px;
+    padding: 0;
   }
 
   .intro {

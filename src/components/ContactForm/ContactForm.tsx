@@ -3,44 +3,80 @@
 import { useState } from "react";
 import styles from "./ContactForm.module.css";
 import { FaPaperPlane } from "react-icons/fa";
+import { submitContact } from "@/app/actions/contact";
+import SuccessPopup from "./SuccessPopup/SuccessPopup";
 
 const ContactForm = ({ data }: { data?: any }) => {
     const heading = data?.heading || "Get in Touch";
     const subheading = data?.subheading || "Have questions or want to collaborate? We'd love to hear from you.";
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        message: "",
-    });
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false);
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [submitterName, setSubmitterName] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [fieldErrors, setFieldErrors] = useState<{ name?: string, email?: string, message?: string }>({});
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+    const validate = (formData: FormData) => {
+        const errors: { name?: string, email?: string, message?: string } = {};
+        const name = formData.get("name") as string;
+        const email = formData.get("email") as string;
+        const message = formData.get("message") as string;
+
+        if (!name || name.length < 2) {
+            errors.name = "Name must be at least 2 characters.";
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            errors.email = "Please enter a valid email address.";
+        }
+
+        if (!message || message.length < 10) {
+            errors.message = "Message must be at least 10 characters.";
+        }
+
+        return errors;
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const form = event.currentTarget; // Capture form reference
+        setErrorMessage("");
+        setFieldErrors({});
+
+        const formData = new FormData(form);
+
+        // Client-side validation
+        const errors = validate(formData);
+        if (Object.keys(errors).length > 0) {
+            setFieldErrors(errors);
+            return;
+        }
+
         setIsSubmitting(true);
 
-        // Simulate Network Request
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            const result = await submitContact(null, formData);
 
-        console.log("Form Submitted:", formData);
-        setIsSubmitting(false);
-        setIsSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
-
-        // Reset success message after 5 seconds
-        setTimeout(() => setIsSuccess(false), 5000);
+            if (result.success) {
+                setSubmitterName(result.name || "Friend");
+                setPopupOpen(true);
+                form.reset(); // Reset using captured reference
+            } else {
+                setErrorMessage(result.message || "An error occurred. Please try again.");
+            }
+        } catch (error) {
+            // Silently fail or log to analytics, but do not show error message to user as requested
+            console.error("Submission error:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <section id="contact" className={styles.contact}>
+            {popupOpen && <SuccessPopup name={submitterName} onClose={() => setPopupOpen(false)} />}
+
             <div className={styles.contact__container}>
                 <div className={styles.contact__header}>
                     <h2 className={styles.contact__heading}>{heading}</h2>
@@ -49,7 +85,20 @@ const ContactForm = ({ data }: { data?: any }) => {
                     </p>
                 </div>
 
-                <form className={styles.form} onSubmit={handleSubmit}>
+                <form className={styles.form} onSubmit={handleSubmit} noValidate>
+                    {errorMessage && (
+                        <div style={{
+                            padding: '12px',
+                            backgroundColor: '#fee',
+                            color: 'red',
+                            marginBottom: '20px',
+                            borderLeft: '4px solid red',
+                            fontSize: '0.9rem'
+                        }}>
+                            {errorMessage}
+                        </div>
+                    )}
+
                     <div className={styles.form__group}>
                         <label htmlFor="name" className={styles.form__label}>
                             Name
@@ -58,12 +107,12 @@ const ContactForm = ({ data }: { data?: any }) => {
                             type="text"
                             id="name"
                             name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            className={styles.form__input}
+                            className={`${styles.form__input} ${fieldErrors.name ? styles.error : ''}`}
                             placeholder="Your Name"
+                            disabled={isSubmitting}
+                            onChange={() => setFieldErrors(prev => ({ ...prev, name: undefined }))}
                         />
+                        {fieldErrors.name && <span className={styles['form__error-text']}>{fieldErrors.name}</span>}
                     </div>
 
                     <div className={styles.form__group}>
@@ -74,12 +123,12 @@ const ContactForm = ({ data }: { data?: any }) => {
                             type="email"
                             id="email"
                             name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className={styles.form__input}
+                            className={`${styles.form__input} ${fieldErrors.email ? styles.error : ''}`}
                             placeholder="your@email.com"
+                            disabled={isSubmitting}
+                            onChange={() => setFieldErrors(prev => ({ ...prev, email: undefined }))}
                         />
+                        {fieldErrors.email && <span className={styles['form__error-text']}>{fieldErrors.email}</span>}
                     </div>
 
                     <div className={styles.form__group}>
@@ -89,12 +138,12 @@ const ContactForm = ({ data }: { data?: any }) => {
                         <textarea
                             id="message"
                             name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                            className={styles.form__textarea}
+                            className={`${styles.form__textarea} ${fieldErrors.message ? styles.error : ''}`}
                             placeholder="How can we help?"
+                            disabled={isSubmitting}
+                            onChange={() => setFieldErrors(prev => ({ ...prev, message: undefined }))}
                         />
+                        {fieldErrors.message && <span className={styles['form__error-text']}>{fieldErrors.message}</span>}
                     </div>
 
                     <button
@@ -104,8 +153,6 @@ const ContactForm = ({ data }: { data?: any }) => {
                     >
                         {isSubmitting ? (
                             "Sending..."
-                        ) : isSuccess ? (
-                            "Message Sent!"
                         ) : (
                             <>
                                 Send Message &nbsp; <FaPaperPlane />

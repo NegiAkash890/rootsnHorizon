@@ -1,0 +1,130 @@
+.storiesPage {
+    padding-top: var(--header-height);
+}
+
+.hero {
+    background-color: var(--primary);
+    padding: 80px 20px;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.heroTitle {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.gridContainer {
+    max-width: var(--container-width);
+    margin: 0 auto 100px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #f4f4f4;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 0px;
+    background-color: #e0e0e0;
+    overflow: hidden;
+}
+
+.cardContent {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Ensures footer sticks if we had one, but good for height balance */
+}
+
+.cardImage {
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .cardImage {
+    transform: scale(1.05);
+}
+
+.tag {
+    display: inline-block;
+    background-color: var(--primary);
+    color: #000;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    align-self: flex-start;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    color: #000;
+}
+
+.description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.readMore {
+    margin-top: auto;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--primary);
+    align-self: flex-start;
+    padding-bottom: 2px;
+    font-size: 0.9rem;
+    color: #000;
+}
+
+@media (max-width: 900px) {
+    .gridContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+}
