@@ -3,7 +3,9 @@ import Image from "next/image";
 import Hero from "@/components/Hero/Hero";
 import StatsSection from "@/components/Stats/StatsSection";
 import FeaturedStories from "@/components/FeaturedStories/FeaturedStories";
+import AboutSection from "@/components/AboutSection/AboutSection";
 import GetInvolved from "@/components/GetInvolved/GetInvolved";
+import ContactForm from "@/components/ContactForm/ContactForm";
 import styles from "./page.module.css";
 import content from "@/data/siteContent.json"; // Fallback
 
@@ -32,13 +34,17 @@ async function getHomepageData() {
         image { asset->{_id, url} }
       }
     },
+    aboutSection->{
+      ...
+    },
     getInvolvedSection->{
       ...,
       cards[] {
         ...,
         image { asset->{_id, url} }
       }
-    }
+    },
+    contactSection->
   }`;
 
   try {
@@ -77,9 +83,11 @@ export default async function Home() {
         </div>
       </div>
       <div className={styles.main}>
+        <AboutSection data={sanityData?.aboutSection || content.aboutSection} />
         <StatsSection data={sanityData?.statsSection || content.stats} />
         <FeaturedStories data={sanityData?.featuredStoriesSection || content.featuredStories} />
         <GetInvolved data={sanityData?.getInvolvedSection || content.getInvolved} />
+        <ContactForm data={sanityData?.contactSection} />
       </div>
     </main>
   );

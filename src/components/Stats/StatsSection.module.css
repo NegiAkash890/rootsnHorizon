@@ -26,12 +26,12 @@
 
 .stats-section__heading {
     font-family: var(--font-heading);
-    font-size: 2.2rem;
+    font-size: 3rem;
     font-weight: 800;
     text-transform: none;
-    /* The screenshot has normal case for title */
     color: #000;
     display: flex;
+    /* Ensure flex for consistent bar alignment */
     align-items: center;
     gap: 12px;
 }
@@ -42,15 +42,16 @@
     width: 6px;
     height: 1.2em;
     background-color: var(--primary);
+    flex-shrink: 0;
 }
 
 .stats-section__description {
     font-family: var(--font-body);
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: #333;
     max-width: 800px;
     margin-bottom: 60px;
-    line-height: 1.6;
+    line-height: 1.75;
 }
 
 .stats-section__grid {
@@ -98,14 +99,44 @@
 
 @media (max-width: 900px) {
     .stats-section__grid {
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding-bottom: 20px;
+        margin-right: -20px;
+        padding-right: 20px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+
+    .stat-card {
+        min-width: 250px;
+        scroll-snap-align: start;
     }
 }
 
 @media (max-width: 600px) {
+    .stats-section {
+        padding: 40px 0;
+        /* Reduced from 80px */
+    }
+
+    .stats-section__heading {
+        font-size: 2rem;
+        /* Reduced from 3rem */
+        justify-content: center;
+        /* Center align title */
+    }
+
+    .stats-section__header-group {
+        justify-content: center;
+        /* Center aligns title bar etc */
+    }
+
     .stats-section__grid {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 30px;
     }
 
     .stat-card {

@@ -8,10 +8,10 @@ const FeaturedStories = ({ data }: { data: any }) => {
     const heading = data?.heading || "";
     const mainFeature = data?.mainFeature || {};
     const subFeatures = data?.subFeatures || [];
-    const seeAll = data?.seeAllText || data?.seeAll || "SEE THE LATEST";
+    const seeAll = data?.seeAllText || data?.seeAll || "Explore More";
 
     return (
-        <section className={styles.featured}>
+        <section id="featured" className={styles.featured}>
             <div className={styles['featured__container']}>
                 <h2 className={styles['featured__heading']}>{heading}</h2>
 
@@ -29,7 +29,7 @@ const FeaturedStories = ({ data }: { data: any }) => {
                         <span className={styles['featured__tag']}>{mainFeature.tag}</span>
                         <h3 className={styles['featured__main-title']}>{mainFeature.title}</h3>
                         <p className={styles['featured__main-desc']}>{mainFeature.description}</p>
-                        <Link href={mainFeature.link || "#"} className={styles['featured__link']}>
+                        <Link href={mainFeature.slug?.current ? `/stories/${mainFeature.slug.current}` : (mainFeature.link || "#")} className={styles['featured__main-btn']}>
                             Read now
                         </Link>
                     </div>
@@ -50,7 +50,7 @@ const FeaturedStories = ({ data }: { data: any }) => {
                             <div className={styles['featured__sub-content']}>
                                 <span className={styles['featured__sub-tag']}>{story.tag}</span>
                                 <h3 className={styles['featured__sub-title']}>{story.title}</h3>
-                                <Link href={story.link || "#"} className={styles['featured__link']}>
+                                <Link href={story.slug?.current ? `/stories/${story.slug.current}` : (story.link || "#")} className={styles['featured__sub-link']}>
                                     {story.linkText || "Read the article"}
                                 </Link>
                             </div>

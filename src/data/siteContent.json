@@ -104,27 +104,43 @@
                 "linkText": "Read the article"
             }
         ],
-        "seeAll": "SEE THE LATEST"
+        "seeAll": "Explore More"
+    },
+    "aboutSection": {
+        "heading": "About Roots & Horizon",
+        "description": "Roots & Horizon is dedicated to empowering communities and providing sustainable solutions for those in need. Our mission is to foster growth, resilience, and hope across the globe. Through our diverse programs and dedicated volunteers, we work tirelessly to create a better future for everyone. Join us in our journey to make a lasting impact.",
+        "image": "/images/about-brief.jpg",
+        "ctaText": "Show More",
+        "ctaLink": "/about"
     },
     "getInvolved": {
-        "heading": "Get involved",
+        "heading": "Scheduled Events",
         "cards": [
             {
                 "image": "/hero-placeholder.png",
-                "title": "Donate",
-                "description": "A donation will help ensure aid gets to people.",
+                "title": "Community Outreach",
+                "description": "Join us for our monthly community outreach program.",
+                "date": "Oct 24, 2025",
+                "time": "10:00 AM",
+                "location": "Central Park, NY",
                 "link": "/donate"
             },
             {
                 "image": "/hero-placeholder.png",
-                "title": "Join Rescue Collective",
-                "description": "A community of supporters helping refugees and displaced families rebuild their lives.",
+                "title": "Sustainability Workshop",
+                "description": "Learn about sustainable living and how to reduce your carbon footprint.",
+                "date": "Nov 12, 2025",
+                "time": "2:00 PM",
+                "location": "Green Hub, London",
                 "link": "/join"
             },
             {
                 "image": "/hero-placeholder.png",
-                "title": "Volunteer",
-                "description": "Volunteers play a critical role in helping refugees and immigrants thrive in the United States.",
+                "title": "Resource Drive",
+                "description": "Helping families in need with essential resources.",
+                "date": "Dec 05, 2025",
+                "time": "9:00 AM",
+                "location": "Global Plaza, Berlin",
                 "link": "/volunteer"
             }
         ]

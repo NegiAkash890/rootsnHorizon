@@ -36,6 +36,12 @@ export const homepage = defineType({
             to: [{ type: 'featuredStoriesSection' }]
         }),
         defineField({
+            name: 'aboutSection',
+            title: 'About Section',
+            type: 'reference',
+            to: [{ type: 'aboutSection' }]
+        }),
+        defineField({
             name: 'getInvolvedSection',
             title: 'Get Involved Section',
             type: 'reference',

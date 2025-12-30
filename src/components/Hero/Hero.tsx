@@ -1,18 +1,27 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Hero.module.css";
-import content from "../../data/siteContent.json";
 
 const Hero = ({ data }: { data: any }) => {
     const { label, title, description, cta } = data;
 
     return (
-        <section className={styles.hero}>
+        <section id="home" className={styles.hero}>
+            <div className={styles['hero__bg-wrapper']}>
+                <Image
+                    src={data.image || "/hero-placeholder.png"}
+                    alt="Hero Background"
+                    fill
+                    className={styles['hero__bg-image']}
+                    priority
+                />
+                <div className={styles['hero__overlay']}></div>
+            </div>
             <div className={styles['hero__content']}>
                 <div className={styles['hero__label']}>{label}</div>
-                <h1 className={styles['hero__title']}>
+                <h2 className={styles['hero__title']}>
                     {title}
-                </h1>
+                </h2>
                 <p className={styles['hero__description']}>
                     {description}
                 </p>

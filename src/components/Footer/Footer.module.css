@@ -35,7 +35,7 @@
 
 .footer__description {
     color: #aaa;
-    line-height: 1.6;
+    line-height: 1.75;
     max-width: 300px;
 }
 
@@ -106,5 +106,18 @@
 @media (max-width: 768px) {
     .footer__top-section {
         flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer {
+        padding: 60px 0 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer__bottom-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }

@@ -5,13 +5,29 @@ import Footer from "@/components/Footer/Footer";
 import { client } from "@/sanity/client";
 
 export const metadata: Metadata = {
-  title: "Roots & Horizon - Empowering Communities",
+  title: "Roots & Horizon | Empowering Communities",
   description: "Join us in making a difference.",
 };
 
 async function getLayoutData() {
   const query = `{
-    "navbar": *[_type == "navbar"][0],
+    "navbar": *[_type == "navbar"][0]{
+      ...,
+      topLinks[]{
+        ...,
+        targetSection->{
+          heading,
+          _type
+        }
+      },
+      mainLinks[]{
+        ...,
+        targetSection->{
+          heading,
+          _type
+        }
+      }
+    },
     "footer": *[_type == "footer"][0]
   }`;
   try {

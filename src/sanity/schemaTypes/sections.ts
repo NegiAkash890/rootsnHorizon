@@ -21,7 +21,7 @@ export const statsSection = defineType({
             title: 'Statistics',
             type: 'array',
             of: [
-                defineType({
+                {
                     name: 'statItem',
                     title: 'Stat Item',
                     type: 'object',
@@ -43,7 +43,7 @@ export const statsSection = defineType({
                             type: 'text'
                         })
                     ]
-                })
+                }
             ]
         }),
     ],
@@ -61,6 +61,12 @@ export const story = defineType({
         defineField({ name: 'description', title: 'Description', type: 'text' }),
         defineField({ name: 'link', title: 'Link (External/Internal)', type: 'string' }),
         defineField({ name: 'linkText', title: 'Link Text', type: 'string' }),
+        defineField({
+            name: 'content',
+            title: 'Full Article Content',
+            type: 'array',
+            of: [{ type: 'block' }]
+        }),
     ]
 })
 
@@ -97,6 +103,9 @@ export const getInvolvedCard = defineType({
         defineField({ name: 'image', title: 'Image', type: 'image' }),
         defineField({ name: 'title', title: 'Title', type: 'string' }),
         defineField({ name: 'description', title: 'Description', type: 'text' }),
+        defineField({ name: 'date', title: 'Event Date', type: 'string', description: 'e.g., Oct 24, 2025' }),
+        defineField({ name: 'time', title: 'Event Time', type: 'string', description: 'e.g., 10:00 AM' }),
+        defineField({ name: 'location', title: 'Location', type: 'string', description: 'e.g., London, UK' }),
         defineField({ name: 'link', title: 'Link URL', type: 'string' }),
     ]
 })
@@ -114,5 +123,29 @@ export const getInvolvedSection = defineType({
             type: 'array',
             of: [{ type: 'getInvolvedCard' }]
         })
+    ]
+})
+
+export const aboutSection = defineType({
+    name: 'aboutSection',
+    title: 'About Section',
+    type: 'document',
+    fields: [
+        defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
+        defineField({ name: 'heading', title: 'Heading', type: 'string' }),
+        defineField({ name: 'description', title: 'Brief Description', type: 'text' }),
+        defineField({ name: 'ctaText', title: 'Button Text', type: 'string' }),
+        defineField({ name: 'ctaLink', title: 'Button Link', type: 'string' }),
+    ]
+})
+
+export const contactSection = defineType({
+    name: 'contactSection',
+    title: 'Contact Section',
+    type: 'document',
+    fields: [
+        defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
+        defineField({ name: 'heading', title: 'Section Heading', type: 'string', initialValue: 'Get in Touch' }),
+        defineField({ name: 'subheading', title: 'Subheading', type: 'text', initialValue: "Have questions or want to collaborate? We'd love to hear from you." }),
     ]
 })

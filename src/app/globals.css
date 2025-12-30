@@ -19,28 +19,53 @@
   --border: #DDDDDD;
 
   /* Typography */
-  --font-heading: 'akzidenz-grotesk', Arial, Helvetica, sans-serif;
-  --font-body: 'akzidenz-grotesk', Arial, Helvetica, sans-serif;
+  --font-primary: 'akzidenz-grotesk', Helvetica, Arial, sans-serif;
+
+  --text-size-body: 1.25rem;
+  /* 20px matches rescue.org */
+  --text-weight-body: 300;
+  /* Light matches rescue.org */
+  --line-height-body: 1.75;
+  /* 35px/20px = 1.75 */
 
   /* Spacing */
   --container-width: 75rem;
   /* 1200px */
-  --header-height: 2.5rem;
-  /* 40px */
-  /* Adjusted for TopBar + Navbar */
+  --header-height: 120px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: var(--font-body);
+  font-family: var(--font-primary);
   margin: 0;
   padding: 0;
-  padding-top: var(--header-height);
-  /* Compensate for fixed header */
+  /* padding-top: var(--header-height); Removed to handle in topSection */
   background-color: var(--background);
   color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  /* Crisp text */
+}
+
+p,
+a,
+li,
+span,
+div {
+  font-family: var(--font-primary);
+}
+
+p {
+  line-height: var(--line-height-body);
+  font-weight: var(--text-weight-body);
+  font-size: var(--text-size-body);
+  margin-bottom: 1.5rem;
 }
 
 h1,
@@ -49,13 +74,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-primary);
   margin: 0;
-  font-weight: 800;
-  /* Bolder headings */
-  /* Common in IRC style */
+  font-weight: 700;
+  /* Bold headings */
   letter-spacing: -0.02em;
 }
+
+
 
 a {
   color: inherit;

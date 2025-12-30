@@ -26,7 +26,7 @@ const StatsSection = ({ data }: { data: any }) => {
     const items = rawItems;
 
     return (
-        <section className={styles['stats-section']}>
+        <section id="stats" className={styles['stats-section']}>
             <div className={styles['stats-section__container']}>
                 <h2 className={styles['stats-section__heading']}>{heading}</h2>
                 <p className={styles['stats-section__description']}>

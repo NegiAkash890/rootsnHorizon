@@ -3,12 +3,41 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaBars } from "react-icons/fa";
-import { useState } from "react"; // Added useState import
+import { useState } from "react";
 import styles from "./Navbar.module.css";
-import content from "../../data/siteContent.json";
+
+const sectionTypeToAnchor: Record<string, string> = {
+    heroSection: "home",
+    statsSection: "stats",
+    aboutSection: "about",
+    featuredStoriesSection: "featured",
+    getInvolvedSection: "involved",
+    contactSection: "contact",
+};
+
+const getLinkData = (link: any) => {
+    let label = link.label;
+    let href = link.href || "#";
+
+    // Dynamic Section Linking
+    if (link.targetSection) {
+        if (!label) label = link.targetSection.heading;
+        const anchor = sectionTypeToAnchor[link.targetSection._type];
+        if (anchor) href = `/#${anchor}`;
+    } else if (link.anchorOverride) {
+        // Handle manual anchor override (with or without #)
+        const cleanAnchor = link.anchorOverride.startsWith("#") ? link.anchorOverride : `#${link.anchorOverride}`;
+        href = `/${cleanAnchor}`;
+    } else if (link.anchor) {
+        // Backwards compatibility for the simple 'anchor' field if still present
+        const cleanAnchor = link.anchor.startsWith("#") ? link.anchor : `#${link.anchor}`;
+        href = `/${cleanAnchor}`;
+    }
+
+    return { label, href };
+};
 
 const Navbar = ({ data }: { data: any }) => {
-    // Fallback to empty structure if data is missing, to prevent crash
     const topLinks = data?.topLinks || [];
     const mainLinks = data?.mainLinks || [];
     const cta = data?.cta || { label: "Donate", href: "/donate" };
@@ -20,9 +49,14 @@ const Navbar = ({ data }: { data: any }) => {
             {/* Top Utility Bar */}
             <div className={styles['top-bar']}>
                 <div className={styles['top-bar__container']}>
-                    {topLinks.map((link, index) => (
-                        <Link key={index} href={link.href || "#"} className={styles['top-bar__link']}>{link.label}</Link>
-                    ))}
+                    {topLinks.map((link: any, index: number) => {
+                        const { label, href } = getLinkData(link);
+                        return (
+                            <Link key={index} href={href} className={styles['top-bar__link']}>
+                                {label}
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -40,16 +74,27 @@ const Navbar = ({ data }: { data: any }) => {
                     </Link>
 
                     <ul className={styles['navbar__links']}>
-                        {mainLinks.map((link, index) => (
-                            <li key={index}><Link href={link.href || "#"} className={styles['navbar__link']}>{link.label}</Link></li>
-                        ))}
+                        {mainLinks.map((link: any, index: number) => {
+                            const { label, href } = getLinkData(link);
+                            return (
+                                <li key={index}>
+                                    <Link href={href} className={styles['navbar__link']}>
+                                        {label}
+                                    </Link>
+                                </li>
+                            );
+                        })}
                     </ul>
 
                     <div className={styles.actions}>
-                        <Link href={cta.href} className={styles['navbar__btn']}>
+                        <Link href={getLinkData(cta).href} className={styles['navbar__btn']}>
                             {cta.label}
                         </Link>
-                        <button className={styles['navbar__toggle']} aria-label="Toggle menu">
+                        <button
+                            className={styles['navbar__toggle']}
+                            aria-label="Toggle menu"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        >
                             <FaBars />
                         </button>
                     </div>

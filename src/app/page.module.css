@@ -11,12 +11,8 @@
 
   display: flex;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
   flex-direction: column;
-  justify-content: flex-start;
+  background-color: var(--background);
 }
 
 .topSection {
@@ -24,6 +20,10 @@
   width: 100%;
   flex-direction: row;
   min-height: 600px;
+  padding-top: var(--header-height);
+  /* 120px */
+  background-color: #fff;
+  /* Match Hero background */
 }
 
 .heroWrapper {
@@ -38,9 +38,7 @@
   flex: 0 0 50%;
   max-width: 50%;
   position: relative;
-  min-height: 400px;
-  background-color: #f0f0f0;
-  /* Placeholder bg */
+  min-height: 650px;
 }
 
 .heroImage {
@@ -49,9 +47,6 @@
 
 @media (max-width: 900px) {
   .topSection {
-    flex-direction: column-reverse;
-    /* Stack image on top of text or vice versa? Usually image top. Let's try column (Text top) or column-reverse (Image top). User didn't specify. Standard is image top on mobile. */
-    /* Actually standard hero text often top. Let's stick to column (Text top, Image bottom) or maybe hide image? Let's keep both. */
     flex-direction: column;
   }
 
@@ -60,7 +55,6 @@
     max-width: 100%;
     flex: auto;
     min-height: auto;
-    /* Let text determine height */
   }
 
   .heroImageWrapper {
@@ -78,7 +72,6 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--foreground);
-  padding: 120px 60px;
 }
 
 .intro {
@@ -102,7 +95,7 @@
 .intro p {
   max-width: 440px;
   font-size: 18px;
-  line-height: 32px;
+  line-height: 1.75;
   text-wrap: balance;
   color: var(--text-secondary);
 }
