@@ -10,7 +10,12 @@ import { PortableText } from "@portabletext/react";
 // Fetch story data based on slug
 async function getStory(slug: string) {
     // 1. Try Sanity
-    const query = `*[slug.current == $slug][0]{
+    // Only run query if we have a valid slug to avoid build errors with undefined params
+    if (!slug) return null;
+
+    // Sanitize slug to prevent injection (though strictly speaking slugs are URL safe usually)
+    const sanitizedSlug = slug.replace(/"/g, '\\"');
+    const query = `*[_type == "story" && slug.current == "${sanitizedSlug}"][0]{
         title,
         description,
         image {
@@ -24,7 +29,7 @@ async function getStory(slug: string) {
     }`;
 
     try {
-        const story = await client.fetch(query, { slug });
+        const story = await client.fetch(query);
         if (story) return story;
     } catch (error) {
         console.warn("Sanity fetch failed or not configured, falling back to local data.");
@@ -50,8 +55,21 @@ async function getStory(slug: string) {
     return null;
 }
 
+// Generate static params for all stories
+export async function generateStaticParams() {
+    const query = `*[_type == "story"]{ "slug": slug.current }`;
+    const stories = await client.fetch(query);
+
+    return stories.map((story: any) => ({
+        slug: story.slug,
+    }));
+}
+
 export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
-    const slug = (await params).slug;
+    const { slug } = await params;
+
+    if (!slug) return notFound();
+
     const story = await getStory(slug);
 
     if (!story) {
