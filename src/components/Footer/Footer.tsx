@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import styles from "./Footer.module.css";
-import content from "../../data/siteContent.json";
 // In a real app, I'd use an icon library like react-icons or lucide-react.
 // For now, I'll use text placeholders or simple SVGs if needed, but text is safer without extra deps.
 // I will just use text abbreviations for Socials for simplicity or simple inline SVGs.
@@ -16,9 +15,15 @@ interface FooterSection {
     links: FooterLink[];
 }
 
-const Footer = ({ data }: { data: any }) => {
+interface FooterData {
+    description?: string;
+    sections?: FooterSection[];
+    socialLinks?: { platform: string; url: string }[];
+}
+
+const Footer = ({ data }: { data: FooterData }) => {
     const description = data?.description || "";
-    const sections: FooterSection[] = data?.sections || [];
+    const sections = data?.sections || [];
     const socialLinks = data?.socialLinks || [];
 
     const getIcon = (platform: string) => {
@@ -42,7 +47,7 @@ const Footer = ({ data }: { data: any }) => {
                         </p>
                         {/* Social Media Links */}
                         <div className={styles['footer__social-links']}>
-                            {socialLinks.map((link: any, index: number) => (
+                            {socialLinks.map((link, index) => (
                                 <a
                                     key={index}
                                     href={link.url}

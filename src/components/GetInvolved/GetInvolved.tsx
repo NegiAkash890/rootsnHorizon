@@ -2,7 +2,21 @@ import Image from "next/image";
 import styles from "./GetInvolved.module.css";
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 
-const GetInvolved = ({ data }: { data: any }) => {
+interface InvolvementCard {
+    title: string;
+    description: string;
+    image?: { asset?: { url: string } } | string;
+    date?: string;
+    time?: string;
+    location?: string;
+}
+
+interface GetInvolvedData {
+    heading?: string;
+    cards?: InvolvementCard[];
+}
+
+const GetInvolved = ({ data }: { data: GetInvolvedData }) => {
     const heading = data?.heading || "";
     const cards = data?.cards || [];
 
@@ -12,11 +26,15 @@ const GetInvolved = ({ data }: { data: any }) => {
                 <h2 className={styles['involved__heading']}>{heading}</h2>
 
                 <div className={styles['involved__grid']}>
-                    {cards.map((card: any, index: number) => (
+                    {cards.map((card: InvolvementCard, index: number) => (
                         <div key={index} className={styles.card}>
                             <div className={styles['card__image-wrapper']}>
                                 <Image
-                                    src={card.image?.asset?.url || (typeof card.image === 'string' ? card.image : "/hero-placeholder.png")}
+                                    src={
+                                        (typeof card.image === 'object' && card.image?.asset?.url)
+                                            ? card.image.asset.url
+                                            : (typeof card.image === 'string' ? card.image : "/hero-placeholder.png")
+                                    }
                                     alt={card.title}
                                     fill
                                     className={styles['card__image']}

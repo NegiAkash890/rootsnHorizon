@@ -6,7 +6,12 @@ import { FaPaperPlane } from "react-icons/fa";
 import { submitContact } from "@/app/actions/contact";
 import SuccessPopup from "./SuccessPopup/SuccessPopup";
 
-const ContactForm = ({ data }: { data?: any }) => {
+interface ContactFormData {
+    heading?: string;
+    subheading?: string;
+}
+
+const ContactForm = ({ data }: { data?: ContactFormData }) => {
     const heading = data?.heading || "Get in Touch";
     const subheading = data?.subheading || "Have questions or want to collaborate? We'd love to hear from you.";
 

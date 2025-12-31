@@ -1,9 +1,18 @@
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./Hero.module.css";
 
-const Hero = ({ data }: { data: any }) => {
-    const { label, title, description, cta } = data;
+interface HeroData {
+    label?: string;
+    title?: string;
+    description?: string;
+    cta?: {
+        label: string;
+        href: string;
+    };
+}
+
+const Hero = ({ data }: { data: HeroData }) => {
+    const { label, title, description, cta = { label: "Donate", href: "/donate" } } = data || {};
 
     return (
         <section id="home" className={styles.hero}>

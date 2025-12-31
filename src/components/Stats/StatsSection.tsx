@@ -1,5 +1,4 @@
 import styles from "./StatsSection.module.css";
-import content from "../../data/siteContent.json";
 import { FaGraduationCap, FaTint, FaStethoscope, FaHome } from "react-icons/fa";
 
 // Mapping string icons to React components for now (since we use JSON)
@@ -10,7 +9,20 @@ const iconMap: Record<string, React.ReactNode> = {
     home: <FaHome />
 };
 
-const StatsSection = ({ data }: { data: any }) => {
+interface StatItem {
+    icon?: string | { asset?: { url: string } };
+    number?: string | number;
+    label?: string;
+}
+
+interface StatsSectionData {
+    heading?: string;
+    description?: string;
+    stats?: StatItem[];
+    items?: StatItem[];
+}
+
+const StatsSection = ({ data }: { data: StatsSectionData }) => {
     // If data comes from Sanity, structure might be slightly different (e.g. data.stats instead of data.items)
     // We should normalize it or ensure schema matches JSON structure.
     // In schema I named it 'stats' (array), in JSON it is 'items'.
@@ -34,7 +46,7 @@ const StatsSection = ({ data }: { data: any }) => {
                 </p>
 
                 <div className={styles['stats-section__grid']}>
-                    {items.map((item: any, index: number) => (
+                    {items.map((item: StatItem, index: number) => (
                         <div key={index} className={styles['stat-card']}>
                             <div className={styles['stat-card__icon-wrapper']}>
                                 <span className={styles['stat-card__icon']}>

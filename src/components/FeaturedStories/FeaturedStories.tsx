@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./FeaturedStories.module.css";
-import content from "../../data/siteContent.json";
 
 interface Story {
     image?: { asset?: { url: string } } | string;

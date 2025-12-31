@@ -17,9 +17,7 @@ export default function NotFound() {
             </div>
 
             <h1 className={styles.title}>Oops!</h1>
-            <p className={styles.description}>
-                The page you are looking for doesn't exist.
-            </p>
+            <p className={styles.text}>The page you&apos;re looking for doesn&apos;t seem to exist.</p>
 
             <Link href="/" className={styles.homeButton}>
                 Return to home page

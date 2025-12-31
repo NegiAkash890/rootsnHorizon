@@ -1,13 +1,19 @@
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./AboutSection.module.css";
 
-const AboutSection = ({ data }: { data: any }) => {
+interface AboutSectionData {
+    heading?: string;
+    description?: string;
+    image?: { asset?: { url: string } } | string;
+    ctaText?: string;
+    ctaLink?: string;
+}
+
+const AboutSection = ({ data }: { data: AboutSectionData }) => {
     if (!data) return null;
 
     const heading = data.heading || "";
     const description = data.description || "";
-    const image = data.image?.asset?.url || (typeof data.image === 'string' ? data.image : "/hero-placeholder.png");
     const ctaText = data.ctaText || "LEARN MORE";
     const ctaLink = data.ctaLink || "/about";
 

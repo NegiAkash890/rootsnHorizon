@@ -6,6 +6,27 @@ import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import styles from "./Navbar.module.css";
 
+interface NavLink {
+    label: string;
+    href?: string;
+    targetSection?: {
+        heading: string;
+        _type: string;
+    };
+    anchorOverride?: string;
+    anchor?: string;
+}
+
+interface NavbarData {
+    topLinks?: NavLink[];
+    mainLinks?: NavLink[];
+    cta?: {
+        label: string;
+        href: string;
+        anchor?: string;
+    };
+}
+
 const sectionTypeToAnchor: Record<string, string> = {
     heroSection: "home",
     statsSection: "stats",
@@ -15,7 +36,7 @@ const sectionTypeToAnchor: Record<string, string> = {
     contactSection: "contact",
 };
 
-const getLinkData = (link: any) => {
+const getLinkData = (link: NavLink) => {
     let label = link.label;
     let href = link.href || "#";
 
@@ -37,8 +58,8 @@ const getLinkData = (link: any) => {
     return { label, href };
 };
 
-const Navbar = ({ data }: { data: any }) => {
-    const topLinks = data?.topLinks || [];
+const Navbar = ({ data }: { data: NavbarData }) => {
+    // const topLinks = data?.topLinks || [];
     const mainLinks = data?.mainLinks || [];
     const cta = data?.cta || { label: "Donate", href: "/donate" };
 
@@ -74,7 +95,7 @@ const Navbar = ({ data }: { data: any }) => {
                     </Link>
 
                     <ul className={styles['navbar__links']}>
-                        {mainLinks.map((link: any, index: number) => {
+                        {mainLinks.map((link, index) => {
                             const { label, href } = getLinkData(link);
                             return (
                                 <li key={index}>
