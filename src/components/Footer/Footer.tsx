@@ -6,9 +6,30 @@ import content from "../../data/siteContent.json";
 // For now, I'll use text placeholders or simple SVGs if needed, but text is safer without extra deps.
 // I will just use text abbreviations for Socials for simplicity or simple inline SVGs.
 
+interface FooterLink {
+    label: string;
+    href: string;
+}
+
+interface FooterSection {
+    heading: string;
+    links: FooterLink[];
+}
+
 const Footer = ({ data }: { data: any }) => {
     const description = data?.description || "";
-    const sections = data?.sections || [];
+    const sections: FooterSection[] = data?.sections || [];
+    const socialLinks = data?.socialLinks || [];
+
+    const getIcon = (platform: string) => {
+        switch (platform) {
+            case 'facebook': return <FaFacebookF />;
+            case 'twitter': return <FaTwitter />;
+            case 'instagram': return <FaInstagram />;
+            case 'linkedin': return <FaLinkedinIn />;
+            default: return null;
+        }
+    };
 
     return (
         <footer className={styles.footer}>
@@ -21,10 +42,18 @@ const Footer = ({ data }: { data: any }) => {
                         </p>
                         {/* Social Media Links */}
                         <div className={styles['footer__social-links']}>
-                            <a href="#" className={styles['footer__social-icon']} aria-label="Facebook"><FaFacebookF /></a>
-                            <a href="#" className={styles['footer__social-icon']} aria-label="Twitter"><FaTwitter /></a>
-                            <a href="#" className={styles['footer__social-icon']} aria-label="Instagram"><FaInstagram /></a>
-                            <a href="#" className={styles['footer__social-icon']} aria-label="LinkedIn"><FaLinkedinIn /></a>
+                            {socialLinks.map((link: any, index: number) => (
+                                <a
+                                    key={index}
+                                    href={link.url}
+                                    className={styles['footer__social-icon']}
+                                    aria-label={link.platform}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    {getIcon(link.platform)}
+                                </a>
+                            ))}
                         </div>
                     </div>
 
@@ -32,7 +61,7 @@ const Footer = ({ data }: { data: any }) => {
                         <div key={index} className={styles['footer__column']}>
                             <h4 className={styles['footer__heading']}>{section.heading}</h4>
                             <ul className={styles['footer__link-list']}>
-                                {section.links.map((link, linkIndex) => (
+                                {section.links?.map((link, linkIndex) => (
                                     <li key={linkIndex}>
                                         <Link href={link.href || "#"} className={styles['footer__link']}>{link.label}</Link>
                                     </li>

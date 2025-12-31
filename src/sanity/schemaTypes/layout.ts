@@ -116,6 +116,32 @@ export const footer = defineType({
                     ]
                 }
             ]
+        }),
+        defineField({
+            name: 'socialLinks',
+            title: 'Social Media Links',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        {
+                            name: 'platform',
+                            title: 'Platform',
+                            type: 'string',
+                            options: {
+                                list: [
+                                    { title: 'Facebook', value: 'facebook' },
+                                    { title: 'Twitter', value: 'twitter' },
+                                    { title: 'Instagram', value: 'instagram' },
+                                    { title: 'LinkedIn', value: 'linkedin' }
+                                ]
+                            }
+                        },
+                        { name: 'url', title: 'URL', type: 'string' }
+                    ]
+                }
+            ]
         })
     ]
 })

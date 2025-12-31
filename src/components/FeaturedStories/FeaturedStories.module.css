@@ -266,11 +266,17 @@
         /* Prevent overflow */
     }
 
+    .featured__tag {
+        color: var(--primary);
+        font-weight: 600;
+    }
+
     .featured__main-title {
         font-size: 1.5rem;
         /* Reduced from 2rem */
         margin-bottom: 12px;
         line-height: 1.3;
+        color: #000;
     }
 
     .featured__main-desc {
@@ -278,6 +284,7 @@
         /* Reduced from 1.1rem */
         margin-bottom: 20px;
         line-height: 1.5;
+        color: #333;
     }
 
     .featured__main-btn {

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import { client } from "@/sanity/client";
 
 export const metadata: Metadata = {
-  title: "Roots & Horizon | Empowering Communities",
+  title: "Roots n Horizon | Empowering Communities",
   description: "Join us in making a difference.",
 };
 
