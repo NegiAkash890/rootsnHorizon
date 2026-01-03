@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { client } from "@/sanity/client";
+import { REVALIDATE_TIME } from "@/config";
+
+export const revalidate = REVALIDATE_TIME;
+
 import { PortableText } from "@portabletext/react";
 import styles from "../page.module.css";
 import Image from "next/image";

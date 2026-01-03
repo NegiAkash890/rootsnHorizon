@@ -1,4 +1,8 @@
 import { client } from "@/sanity/client";
+import { REVALIDATE_TIME } from "@/config";
+
+export const revalidate = REVALIDATE_TIME;
+
 import Image from "next/image";
 import Hero from "@/components/Hero/Hero";
 import StatsSection from "@/components/Stats/StatsSection";

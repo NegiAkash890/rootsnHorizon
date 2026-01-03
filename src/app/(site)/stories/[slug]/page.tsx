@@ -1,4 +1,8 @@
 import { client } from "@/sanity/client";
+import { REVALIDATE_TIME } from "@/config";
+
+export const revalidate = REVALIDATE_TIME;
+
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";

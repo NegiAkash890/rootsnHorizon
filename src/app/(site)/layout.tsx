@@ -1,9 +1,13 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { client } from "@/sanity/client";
+import { REVALIDATE_TIME } from "@/config";
+
+export const revalidate = REVALIDATE_TIME;
+
 
 async function getLayoutData() {
-    const query = `{
+  const query = `{
     "navbar": *[_type == "navbar"][0]{
       ...,
       topLinks[]{
@@ -23,26 +27,26 @@ async function getLayoutData() {
     },
     "footer": *[_type == "footer"][0]
   }`;
-    try {
-        return await client.fetch(query);
-    } catch (error) {
-        console.error("Layout fetch error:", error);
-        return { navbar: null, footer: null };
-    }
+  try {
+    return await client.fetch(query);
+  } catch (error) {
+    console.error("Layout fetch error:", error);
+    return { navbar: null, footer: null };
+  }
 }
 
 export default async function SiteLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    const { navbar, footer } = await getLayoutData();
+  const { navbar, footer } = await getLayoutData();
 
-    return (
-        <>
-            <Navbar data={navbar} />
-            {children}
-            <Footer data={footer} />
-        </>
-    );
+  return (
+    <>
+      <Navbar data={navbar} />
+      {children}
+      <Footer data={footer} />
+    </>
+  );
 }
