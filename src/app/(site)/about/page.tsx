@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { client } from "@/sanity/client";
-import { REVALIDATE_TIME } from "@/config";
 
-export const revalidate = REVALIDATE_TIME;
+export const revalidate = 60; // Revalidate every 60 seconds
 
 import { PortableText } from "@portabletext/react";
 import styles from "../page.module.css";

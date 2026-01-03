@@ -1,7 +1,6 @@
 import { client } from "@/sanity/client";
-import { REVALIDATE_TIME } from "@/config";
 
-export const revalidate = REVALIDATE_TIME;
+export const revalidate = 60; // Revalidate every 60 seconds
 
 import Image from "next/image";
 import Hero from "@/components/Hero/Hero";
