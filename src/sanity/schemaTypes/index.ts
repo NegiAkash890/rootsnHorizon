@@ -1,11 +1,17 @@
 import { type SchemaTypeDefinition } from 'sanity'
-import { statsSection, story, featuredStoriesSection, getInvolvedCard, getInvolvedSection, aboutSection, contactSection } from './sections'
+import { statsSection, story, featuredStoriesSection, getInvolvedCard, getInvolvedSection, aboutSection, contactSection, gallerySection } from './sections'
 import { homepage } from './homepage'
 import { heroSection, heroSidebar } from './hero'
 import { navbar, footer } from './layout'
 
 import { contactSubmission } from './contactSubmission'
 import { aboutPage } from './aboutPage'
+import { teamMember, teamSection } from './team'
+import { genericPage } from './genericPage'
+import { event } from './event'
+import { eventsSection } from './eventsSection'
+import { testimonial } from './testimonial'
+import { testimonialsSection } from './testimonialsSection'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
     types: [
@@ -22,6 +28,14 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         story,
         getInvolvedCard,
         contactSubmission,
-        aboutPage
+        aboutPage,
+        teamMember,
+        teamSection,
+        genericPage,
+        event,
+        eventsSection,
+        gallerySection,
+        testimonial,
+        testimonialsSection
     ],
 }

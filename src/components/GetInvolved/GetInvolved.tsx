@@ -1,14 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
+import { format } from "date-fns";
 import styles from "./GetInvolved.module.css";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
 
 interface InvolvementCard {
     title: string;
     description: string;
     image?: { asset?: { url: string } } | string;
-    date?: string;
-    time?: string;
+    date?: string; // ISO datetime from Sanity
     location?: string;
+    slug?: { current: string };
+    status?: string;
 }
 
 interface GetInvolvedData {
@@ -49,20 +52,30 @@ const GetInvolved = ({ data }: { data: GetInvolvedData }) => {
                                 <div className={styles['card__meta']}>
                                     <div className={styles['card__meta-item']}>
                                         <FaCalendarAlt className={styles['card__meta-icon']} />
-                                        <span>{card.date || "TBD"}</span>
+                                        <span>
+                                            {card.date ? format(new Date(card.date), "MMM d, yyyy") : "TBD"}
+                                        </span>
                                     </div>
                                     <div className={styles['card__meta-item']}>
                                         <FaClock className={styles['card__meta-icon']} />
-                                        <span>{card.time || "TBD"}</span>
+                                        <span>
+                                            {card.date ? format(new Date(card.date), "h:mm a") : "TBD"}
+                                        </span>
                                     </div>
                                     <div className={styles['card__meta-item']}>
                                         <FaMapMarkerAlt className={styles['card__meta-icon']} />
-                                        <span>{card.location || "TBD"}</span>
+                                        <span>{card.location || "Online"}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ))}
+                </div>
+
+                <div className={styles['involved__footer']}>
+                    <Link href="/events" className={styles['involved__see-all']}>
+                        See The Latest <FaArrowRight />
+                    </Link>
                 </div>
             </div>
         </section>

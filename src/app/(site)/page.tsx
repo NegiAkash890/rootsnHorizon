@@ -4,29 +4,32 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 import Image from "next/image";
 import Hero from "@/components/Hero/Hero";
+import HeroImage from "@/components/Hero/HeroImage";
 import StatsSection from "@/components/Stats/StatsSection";
 import FeaturedStories from "@/components/FeaturedStories/FeaturedStories";
 import AboutSection from "@/components/AboutSection/AboutSection";
+import TeamSection from "@/components/TeamSection/TeamSection";
 import GetInvolved from "@/components/GetInvolved/GetInvolved";
 import ContactForm from "@/components/ContactForm/ContactForm";
+import GallerySection from "@/components/GallerySection/GallerySection";
 import styles from "./page.module.css";
 import content from "@/data/siteContent.json"; // Fallback
 
 async function getHomepageData() {
   const query = `*[_type == "homepage"][0]{
-    hero->{
+    "hero": coalesce(hero->, hero) {
       ...,
       image { asset->{_id, url} }
     },
-    heroSidebar->,
-    statsSection->{
+    "heroSidebar": coalesce(heroSidebar->, heroSidebar),
+    "statsSection": coalesce(statsSection->, statsSection) {
       ...,
       stats[] {
         ...,
         icon { asset->{_id, url} }
       }
     },
-    featuredStoriesSection->{
+    "featuredStoriesSection": coalesce(featuredStoriesSection->, featuredStoriesSection) {
       ...,
       mainFeature->{
         ...,
@@ -37,17 +40,45 @@ async function getHomepageData() {
         image { asset->{_id, url} }
       }
     },
-    aboutSection->{
+    "aboutSection": coalesce(aboutSection->, aboutSection) {
       ...
     },
-    getInvolvedSection->{
+    teamSection{
       ...,
-      cards[] {
+      members[]-> {
         ...,
-        image { asset->{_id, url} }
+        image { asset->{_id, url} },
+        slug
       }
     },
-    contactSection->
+    eventsSection{
+      ...,
+      events[]->{
+        ...,
+        image { asset->{_id, url} },
+        slug
+      }
+    },
+    "getInvolvedSection": coalesce(getInvolvedSection->, getInvolvedSection) {
+      ...,
+      "cards": *[_type == "event" && isFeatured == true] | order(date asc)[0...3] {
+        title,
+        description,
+        date,
+        location,
+        image { asset->{_id, url} },
+        slug,
+        status
+      }
+    },
+    "contactSection": coalesce(contactSection->, contactSection),
+    "gallerySection": coalesce(gallerySection->, gallerySection) {
+      ...,
+      images[] {
+        asset->{_id, url},
+        alt
+      }
+    }
   }`;
 
   try {
@@ -75,21 +106,16 @@ export default async function Home() {
           <Hero data={heroData} />
         </div>
         <div className={styles.heroImageWrapper}>
-          {/* Fallback image if Sanity data is missing or string path */}
-          <Image
-            src={heroData?.image?.asset?.url || (typeof heroData?.image === 'string' ? heroData.image : "/hero-placeholder.png")}
-            alt="Hero Image"
-            fill
-            className={styles.heroImage}
-            priority
-          />
+          <HeroImage image={heroData?.image} />
         </div>
       </div>
       <div className={styles.main}>
         <AboutSection data={sanityData?.aboutSection || content.aboutSection} />
         <StatsSection data={sanityData?.statsSection || content.stats} />
+        <TeamSection data={sanityData?.teamSection} />
         <FeaturedStories data={sanityData?.featuredStoriesSection || content.featuredStories} />
         <GetInvolved data={sanityData?.getInvolvedSection || content.getInvolved} />
+        <GallerySection data={sanityData?.gallerySection} />
         <ContactForm data={sanityData?.contactSection} />
       </div>
     </main>

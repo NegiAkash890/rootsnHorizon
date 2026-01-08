@@ -39,9 +39,41 @@
 
 .featured__main-image-wrapper {
     position: relative;
-    height: 600px;
     width: 65%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     z-index: 1;
+}
+
+/* ... existing code ... */
+
+.featured__sub-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+/* Mobile overrides */
+@media (max-width: 900px) {
+    .featured__main-image-wrapper {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (max-width: 600px) {
+    .featured__main-image-wrapper {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .featured__sub-image-wrapper {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
 }
 
 .featured__main-image {
@@ -135,11 +167,6 @@
     height: 100%;
 }
 
-.featured__sub-image-wrapper {
-    position: relative;
-    height: 300px;
-    width: 100%;
-}
 
 .featured__sub-content {
     padding: 4rem 2rem
@@ -248,11 +275,6 @@
     }
 
     /* Main feature card revamp for mobile */
-    .featured__main-image-wrapper {
-        width: 100%;
-        height: 220px;
-        /* Reduced height */
-    }
 
     .featured__main-content {
         margin-top: 0;
@@ -315,10 +337,6 @@
         box-sizing: border-box;
     }
 
-    .featured__sub-image-wrapper {
-        height: 180px;
-        /* Reduced from 220px */
-    }
 
     .featured__sub-content {
         padding: 20px;

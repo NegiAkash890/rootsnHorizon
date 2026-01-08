@@ -3,8 +3,9 @@ import { defineField, defineType } from 'sanity'
 export const statsSection = defineType({
     name: 'statsSection',
     title: 'Stats Section (Impact)',
-    type: 'document', // Promoted to document
+    type: 'object',
     fields: [
+        defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'stats' }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({
             name: 'heading',
@@ -73,8 +74,9 @@ export const story = defineType({
 export const featuredStoriesSection = defineType({
     name: 'featuredStoriesSection',
     title: 'Featured Stories Section',
-    type: 'document', // Promoted to document
+    type: 'object',
     fields: [
+        defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'featured-stories' }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Section Heading', type: 'string' }),
         defineField({
@@ -113,15 +115,17 @@ export const getInvolvedCard = defineType({
 export const getInvolvedSection = defineType({
     name: 'getInvolvedSection',
     title: 'Get Involved Section',
-    type: 'document', // Promoted to document
+    type: 'object',
     fields: [
+        defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'get-involved' }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({
             name: 'cards',
-            title: 'Cards',
+            title: 'Featured Events',
+            description: 'Select events to display in this section. All events will be listed in the /events page.',
             type: 'array',
-            of: [{ type: 'getInvolvedCard' }]
+            of: [{ type: 'reference', to: [{ type: 'event' }] }]
         })
     ]
 })
@@ -129,8 +133,9 @@ export const getInvolvedSection = defineType({
 export const aboutSection = defineType({
     name: 'aboutSection',
     title: 'About Section',
-    type: 'document',
+    type: 'object',
     fields: [
+        defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'about' }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({ name: 'description', title: 'Brief Description', type: 'text' }),
@@ -142,10 +147,42 @@ export const aboutSection = defineType({
 export const contactSection = defineType({
     name: 'contactSection',
     title: 'Contact Section',
-    type: 'document',
+    type: 'object',
     fields: [
+        defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'contact' }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Section Heading', type: 'string', initialValue: 'Get in Touch' }),
-        defineField({ name: 'subheading', title: 'Subheading', type: 'text', initialValue: "Have questions or want to collaborate? We'd love to hear from you." }),
+    ]
+})
+
+export const gallerySection = defineType({
+    name: 'gallerySection',
+    title: 'Gallery Section',
+    type: 'object',
+    fields: [
+        defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'gallery' }),
+        defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
+        defineField({ name: 'heading', title: 'Heading', type: 'string', initialValue: 'Our Gallery' }),
+        defineField({
+            name: 'images',
+            title: 'Images',
+            type: 'array',
+            of: [
+                {
+                    type: 'image',
+                    options: { hotspot: true },
+                    fields: [
+                        defineField({
+                            name: 'alt',
+                            title: 'Alternative Text',
+                            type: 'string',
+                        })
+                    ]
+                }
+            ],
+            options: {
+                layout: 'grid'
+            }
+        })
     ]
 })

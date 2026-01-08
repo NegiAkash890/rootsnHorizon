@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaBars } from "react-icons/fa";
+import DonationModal from "../DonationModal/DonationModal";
+import { FaBars, FaHeart } from "react-icons/fa";
 import { useState } from "react";
 import styles from "./Navbar.module.css";
 
@@ -64,9 +65,17 @@ const Navbar = ({ data }: { data: NavbarData }) => {
     const cta = data?.cta || { label: "Donate", href: "/donate" };
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isDonationOpen, setIsDonationOpen] = useState(false);
+
+    const handleDonationClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsDonationOpen(true);
+    };
 
     return (
         <header className={styles.header}>
+            <DonationModal isOpen={isDonationOpen} onClose={() => setIsDonationOpen(false)} />
+
             {/* Top Utility Bar */}
             {/* <div className={styles['top-bar']}>
                 <div className={styles['top-bar__container']}>
@@ -108,9 +117,14 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     </ul>
 
                     <div className={styles.actions}>
-                        <Link href={getLinkData(cta).href} className={styles['navbar__btn']}>
+                        <a
+                            href={cta.href}
+                            onClick={cta.label === 'Donate' ? handleDonationClick : undefined}
+                            className={styles['navbar__btn']}
+                        >
                             {cta.label}
-                        </Link>
+                            {cta.label === 'Donate' && <FaHeart />}
+                        </a>
                         <button
                             className={styles['navbar__toggle']}
                             aria-label="Toggle menu"

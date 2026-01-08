@@ -3,8 +3,9 @@ import { defineField, defineType } from 'sanity'
 export const heroSection = defineType({
     name: 'heroSection',
     title: 'Hero Section',
-    type: 'document',
+    type: 'object',
     fields: [
+        defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'hero' }),
         defineField({ name: 'internalTitle', title: 'Internal Title', type: 'string', initialValue: 'Main Hero' }),
         defineField({ name: 'label', title: 'Label', type: 'string' }),
         defineField({ name: 'title', title: 'Title', type: 'string' }),
@@ -25,7 +26,7 @@ export const heroSection = defineType({
 export const heroSidebar = defineType({
     name: 'heroSidebar',
     title: 'Hero Sidebar (Yellow Box)',
-    type: 'document',
+    type: 'object',
     fields: [
         defineField({ name: 'internalTitle', title: 'Internal Title', type: 'string', initialValue: 'Main Sidebar' }),
         defineField({ name: 'title', title: 'Title', type: 'string' }),

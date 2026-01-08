@@ -12,7 +12,7 @@
 
 .involved__heading {
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: var(--text-5xl);
     font-weight: 800;
     margin-bottom: 40px;
     display: flex;
@@ -49,10 +49,19 @@
 
 .card__image-wrapper {
     position: relative;
-    height: 250px;
-    /* Consistent image height */
     width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     flex-shrink: 0;
+}
+
+/* ... existing code ... */
+
+@media (max-width: 600px) {
+    .card__image-wrapper {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
 }
 
 .card__image {
@@ -83,19 +92,19 @@
 
 .card__title {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
+    font-size: var(--text-2xl);
     font-weight: 800;
     color: #000;
 }
 
 .card__arrow {
-    font-size: 1.2rem;
+    font-size: var(--text-xl);
     font-weight: 300;
 }
 
 .card__description {
     font-family: var(--font-body);
-    font-size: 1.125rem;
+    font-size: var(--text-lg);
     color: #333;
     line-height: 1.75;
     font-weight: 300;
@@ -127,7 +136,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     color: #666;
     font-weight: 400;
     white-space: nowrap;
@@ -136,12 +145,12 @@
 
 .card__meta-icon {
     color: var(--primary);
-    font-size: 0.9rem;
+    font-size: var(--text-base);
 }
 
 .card__description {
     font-family: var(--font-body);
-    font-size: 1.125rem;
+    font-size: var(--text-lg);
     color: #333;
     line-height: 1.75;
     font-weight: 300;
@@ -165,7 +174,7 @@
 
     .involved__heading {
         margin-left: 0;
-        font-size: 1.75rem;
+        font-size: var(--text-3xl);
         /* Reduced from 2.25rem */
         margin-bottom: 24px;
         line-height: 1.2;
@@ -193,22 +202,48 @@
         z-index: 2;
     }
 
-    .card__image-wrapper {
-        height: 200px;
-        /* Reduced from 240px */
-    }
 
     .card__title {
-        font-size: 1.25rem;
+        font-size: var(--text-xl);
         /* Reduced from 1.5rem */
         line-height: 1.2;
         margin-bottom: 8px;
     }
 
     .card__description {
-        font-size: 1rem;
+        font-size: var(--text-base);
         /* Reduced width */
         line-height: 1.5;
         margin-bottom: 16px;
     }
+}
+
+.involved__footer {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.involved__see-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    border: 1px solid #000;
+    background: transparent;
+    color: #000;
+    font-weight: 700;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.involved__see-all:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }

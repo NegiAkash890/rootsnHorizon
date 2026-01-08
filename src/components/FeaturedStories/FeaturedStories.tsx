@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./FeaturedStories.module.css";
+import { FaArrowRight } from "react-icons/fa";
 
 interface Story {
     image?: { asset?: { url: string } } | string;
@@ -86,7 +87,7 @@ const FeaturedStories = ({ data }: { data: FeaturedStoriesData }) => {
 
                 <div className={styles['featured__footer']}>
                     <Link href="/stories" className={styles['featured__see-all']}>
-                        {seeAll} &rarr;
+                        {seeAll} <FaArrowRight />
                     </Link>
                 </div>
             </div>

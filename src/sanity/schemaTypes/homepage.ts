@@ -20,38 +20,52 @@ export const homepage = defineType({
         defineField({
             name: 'hero',
             title: 'Hero Section',
-            type: 'reference',
-            to: [{ type: 'heroSection' }]
+            type: 'heroSection'
         }),
         defineField({
             name: 'heroSidebar',
             title: 'Hero Sidebar (Optional)',
-            type: 'reference',
-            to: [{ type: 'heroSidebar' }]
+            type: 'heroSidebar'
         }),
         defineField({
             name: 'statsSection',
             title: 'Stats Section',
-            type: 'reference',
-            to: [{ type: 'statsSection' }]
+            type: 'statsSection'
         }),
         defineField({
             name: 'featuredStoriesSection',
             title: 'Featured Stories Section',
-            type: 'reference',
-            to: [{ type: 'featuredStoriesSection' }]
+            type: 'featuredStoriesSection'
         }),
         defineField({
             name: 'aboutSection',
             title: 'About Section',
-            type: 'reference',
-            to: [{ type: 'aboutSection' }]
+            type: 'aboutSection'
+        }),
+        defineField({
+            name: 'teamSection',
+            title: 'Team Section',
+            type: 'teamSection'
+        }),
+        defineField({
+            name: 'eventsSection',
+            title: 'Events Section',
+            type: 'eventsSection'
         }),
         defineField({
             name: 'getInvolvedSection',
             title: 'Get Involved Section',
-            type: 'reference',
-            to: [{ type: 'getInvolvedSection' }]
+            type: 'getInvolvedSection'
+        }),
+        defineField({
+            name: 'gallerySection',
+            title: 'Gallery Section',
+            type: 'gallerySection'
+        }),
+        defineField({
+            name: 'testimonialsSection',
+            title: 'Testimonials Section',
+            type: 'testimonialsSection'
         }),
         defineField({
             name: 'footer',

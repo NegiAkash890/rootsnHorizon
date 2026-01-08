@@ -7,7 +7,10 @@ import styles from "./Footer.module.css";
 
 interface FooterLink {
     label: string;
-    href: string;
+    href?: string;
+    targetPage?: {
+        slug: string;
+    };
 }
 
 interface FooterSection {
@@ -66,11 +69,16 @@ const Footer = ({ data }: { data: FooterData }) => {
                         <div key={index} className={styles['footer__column']}>
                             <h4 className={styles['footer__heading']}>{section.heading}</h4>
                             <ul className={styles['footer__link-list']}>
-                                {section.links?.map((link, linkIndex) => (
-                                    <li key={linkIndex}>
-                                        <Link href={link.href || "#"} className={styles['footer__link']}>{link.label}</Link>
-                                    </li>
-                                ))}
+                                {section.links?.map((link, linkIndex) => {
+                                    const href = link.targetPage?.slug
+                                        ? `/${link.targetPage.slug}`
+                                        : (link.href || "#");
+                                    return (
+                                        <li key={linkIndex}>
+                                            <Link href={href} className={styles['footer__link']}>{link.label}</Link>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     ))}

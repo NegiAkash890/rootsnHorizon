@@ -20,16 +20,19 @@ export const navbar = defineType({
                         {
                             name: 'targetSection',
                             title: 'Link to Homepage Section',
-                            type: 'reference',
-                            description: 'Select a homepage section to jump to. If the label above is empty, the section heading will be used.',
-                            to: [
-                                { type: 'heroSection' },
-                                { type: 'statsSection' },
-                                { type: 'aboutSection' },
-                                { type: 'featuredStoriesSection' },
-                                { type: 'getInvolvedSection' },
-                                { type: 'contactSection' }
-                            ]
+                            type: 'string',
+                            description: 'Select a homepage section to jump to.',
+                            options: {
+                                list: [
+                                    { title: 'Hero', value: 'hero' },
+                                    { title: 'Stats', value: 'stats' },
+                                    { title: 'About', value: 'about' },
+                                    { title: 'Featured Stories', value: 'featured-stories' },
+                                    { title: 'Get Involved', value: 'get-involved' },
+                                    { title: 'Contact', value: 'contact' },
+                                    { title: 'Gallery', value: 'gallery' }
+                                ]
+                            }
                         },
                         { name: 'href', title: 'External/Static Link', type: 'string', description: 'Use this for external URLs or other pages (e.g. /news).' },
                         { name: 'anchorOverride', title: 'Manual Anchor', type: 'string', description: 'Manually specify an anchor (e.g. "contact-us") if not using a section reference.' }
@@ -51,16 +54,19 @@ export const navbar = defineType({
                         {
                             name: 'targetSection',
                             title: 'Link to Homepage Section',
-                            type: 'reference',
-                            description: 'Select a homepage section to jump to. If the label above is empty, the section heading will be used.',
-                            to: [
-                                { type: 'heroSection' },
-                                { type: 'statsSection' },
-                                { type: 'aboutSection' },
-                                { type: 'featuredStoriesSection' },
-                                { type: 'getInvolvedSection' },
-                                { type: 'contactSection' }
-                            ]
+                            type: 'string',
+                            description: 'Select a homepage section to jump to.',
+                            options: {
+                                list: [
+                                    { title: 'Hero', value: 'hero' },
+                                    { title: 'Stats', value: 'stats' },
+                                    { title: 'About', value: 'about' },
+                                    { title: 'Featured Stories', value: 'featured-stories' },
+                                    { title: 'Get Involved', value: 'get-involved' },
+                                    { title: 'Contact', value: 'contact' },
+                                    { title: 'Gallery', value: 'gallery' }
+                                ]
+                            }
                         },
                         { name: 'href', title: 'External/Static Link', type: 'string', description: 'Use this for external URLs or other pages (e.g. /news).' },
                         { name: 'anchorOverride', title: 'Manual Anchor', type: 'string', description: 'Manually specify an anchor (e.g. "contact-us") if not using a section reference.' }
@@ -108,7 +114,14 @@ export const footer = defineType({
                                     type: 'object',
                                     fields: [
                                         { name: 'label', type: 'string' },
-                                        { name: 'href', type: 'string' }
+                                        { name: 'href', type: 'string', description: 'External or manual link' },
+                                        {
+                                            name: 'targetPage',
+                                            title: 'Target Page',
+                                            type: 'reference',
+                                            to: [{ type: 'genericPage' }],
+                                            description: 'Select a page to link to'
+                                        }
                                     ]
                                 }
                             ]

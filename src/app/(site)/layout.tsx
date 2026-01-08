@@ -24,7 +24,19 @@ async function getLayoutData() {
         }
       }
     },
-    "footer": *[_type == "footer"][0]
+    "footer": *[_type == "footer"][0]{
+      ...,
+      sections[]{
+        ...,
+        links[]{
+          ...,
+          targetPage->{
+            "slug": slug.current,
+            _type
+          }
+        }
+      }
+    }
   }`;
   try {
     return await client.fetch(query);
