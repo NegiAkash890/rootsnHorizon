@@ -95,7 +95,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                 <div className={styles['navbar__container']}>
                     <Link href="/" className={styles['navbar__logo-wrapper']}>
                         <Image
-                            src="/logo.png"
+                            src="/logo.jpg"
                             alt="Roots & Horizon Logo"
                             width={80}
                             height={80}

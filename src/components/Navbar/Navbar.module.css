@@ -112,10 +112,6 @@
     color: var(--primary);
 }
 
-.navbar__link:hover::after {
-    width: 100%;
-}
-
 .navbar__btn {
     background-color: var(--primary);
     color: #000;

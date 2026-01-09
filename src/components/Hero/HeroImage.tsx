@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FaExpand, FaTimes } from "react-icons/fa";
+import { FaSearchPlus, FaTimes } from "react-icons/fa";
 import styles from "./HeroImage.module.css";
 
 interface HeroImageProps {
@@ -51,7 +51,7 @@ const HeroImage = ({ image, alt = "Hero Image" }: HeroImageProps) => {
                     onClick={() => setIsOpen(true)}
                     aria-label="Zoom Image"
                 >
-                    <FaExpand />
+                    <FaSearchPlus />
                 </button>
             </div>
 

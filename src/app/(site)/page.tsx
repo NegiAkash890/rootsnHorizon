@@ -99,6 +99,15 @@ export default async function Home() {
   // We'll need to update components to accept props.
   const heroData = sanityData?.hero || content.hero;
 
+  // Helper to safely merge with fallback
+  const getInvolvedData = {
+    ...content.getInvolved, // Default fallback
+    ...(sanityData?.getInvolvedSection || {}), // Overwrite with sanity data if exists
+    cards: (sanityData?.getInvolvedSection?.cards?.length > 0)
+      ? sanityData.getInvolvedSection.cards
+      : content.getInvolved.cards // Use fallback cards if Sanity cards are empty
+  };
+
   return (
     <main className={styles.page}>
       <div className={styles.topSection}>
@@ -114,7 +123,7 @@ export default async function Home() {
         <StatsSection data={sanityData?.statsSection || content.stats} />
         <TeamSection data={sanityData?.teamSection} />
         <FeaturedStories data={sanityData?.featuredStoriesSection || content.featuredStories} />
-        <GetInvolved data={sanityData?.getInvolvedSection || content.getInvolved} />
+        <GetInvolved data={getInvolvedData} />
         <GallerySection data={sanityData?.gallerySection} />
         <ContactForm data={sanityData?.contactSection} />
       </div>
