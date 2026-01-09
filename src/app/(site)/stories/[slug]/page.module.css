@@ -137,3 +137,29 @@
         padding: 40px 20px;
     }
 }
+
+.storiesTag {
+    display: inline-block;
+    background-color: var(--primary);
+    color: #000;
+    padding: 4px 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.descriptionText {
+    font-size: 1.2rem;
+    font-weight: 500;
+}

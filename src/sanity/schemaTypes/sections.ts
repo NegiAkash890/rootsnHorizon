@@ -6,6 +6,13 @@ export const statsSection = defineType({
     type: 'object',
     fields: [
         defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'stats' }),
+        defineField({
+            name: 'visible',
+            title: 'Show Section',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Toggle to show/hide this section on the visible page.'
+        }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({
             name: 'heading',
@@ -77,6 +84,13 @@ export const featuredStoriesSection = defineType({
     type: 'object',
     fields: [
         defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'featured-stories' }),
+        defineField({
+            name: 'visible',
+            title: 'Show Section',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Toggle to show/hide this section on the visible page.'
+        }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Section Heading', type: 'string' }),
         defineField({
@@ -118,6 +132,13 @@ export const getInvolvedSection = defineType({
     type: 'object',
     fields: [
         defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'get-involved' }),
+        defineField({
+            name: 'visible',
+            title: 'Show Section',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Toggle to show/hide this section on the visible page.'
+        }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({
@@ -136,6 +157,13 @@ export const aboutSection = defineType({
     type: 'object',
     fields: [
         defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'about' }),
+        defineField({
+            name: 'visible',
+            title: 'Show Section',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Toggle to show/hide this section on the visible page.'
+        }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Heading', type: 'string' }),
         defineField({ name: 'description', title: 'Brief Description', type: 'text' }),
@@ -150,6 +178,13 @@ export const contactSection = defineType({
     type: 'object',
     fields: [
         defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'contact' }),
+        defineField({
+            name: 'visible',
+            title: 'Show Section',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Toggle to show/hide this section on the visible page.'
+        }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Section Heading', type: 'string', initialValue: 'Get in Touch' }),
     ]
@@ -161,6 +196,13 @@ export const gallerySection = defineType({
     type: 'object',
     fields: [
         defineField({ name: 'anchorId', title: 'Anchor ID', type: 'string', initialValue: 'gallery' }),
+        defineField({
+            name: 'visible',
+            title: 'Show Section',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Toggle to show/hide this section on the visible page.'
+        }),
         defineField({ name: 'title', title: 'Internal Title', type: 'string' }),
         defineField({ name: 'heading', title: 'Heading', type: 'string', initialValue: 'Our Gallery' }),
         defineField({

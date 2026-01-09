@@ -84,6 +84,15 @@
     resize: vertical;
 }
 
+.form__error-message {
+    padding: 12px;
+    background-color: #fee;
+    color: red;
+    margin-bottom: 20px;
+    border-left: 4px solid red;
+    font-size: 0.9rem;
+}
+
 .form__submit {
     align-self: flex-start;
     margin-top: 1rem;

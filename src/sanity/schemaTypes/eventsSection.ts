@@ -6,6 +6,13 @@ export const eventsSection = defineType({
     type: 'object',
     fields: [
         defineField({
+            name: 'visible',
+            title: 'Show Section',
+            type: 'boolean',
+            initialValue: true,
+            description: 'Toggle to show/hide this section on the visible page.'
+        }),
+        defineField({
             name: 'heading',
             title: 'Section Heading',
             type: 'string',

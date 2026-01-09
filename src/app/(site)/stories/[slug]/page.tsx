@@ -93,16 +93,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
                 <div className={styles.heroOverlay}>
                     <div className={styles.titleWrapper}>
                         {story.tag && (
-                            <span style={{
-                                display: 'inline-block',
-                                backgroundColor: 'var(--primary)',
-                                color: '#000',
-                                padding: '4px 12px',
-                                fontWeight: '700',
-                                fontSize: '0.9rem',
-                                marginBottom: '16px',
-                                textTransform: 'uppercase'
-                            }}>
+                            <span className={styles.storiesTag}>
                                 {story.tag}
                             </span>
                         )}
@@ -113,15 +104,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
 
             {/* Content Section */}
             <article className={styles.content}>
-                <Link href="/#featured" style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    marginBottom: '30px',
-                    color: 'var(--primary)',
-                    fontWeight: '700',
-                    textDecoration: 'none'
-                }}>
+                <Link href="/#featured" className={styles.backLink}>
                     <FaArrowLeft /> Back to stories
                 </Link>
 
@@ -131,7 +114,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
                             <PortableText value={story.content} />
                         </div>
                     ) : (
-                        story.description && <p style={{ fontSize: '1.2rem', fontWeight: 500 }}>{story.description}</p>
+                        story.description && <p className={styles.descriptionText}>{story.description}</p>
                     )}
                 </div>
             </article>

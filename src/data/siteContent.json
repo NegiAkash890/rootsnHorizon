@@ -120,7 +120,7 @@
                 "image": "/hero-placeholder.png",
                 "title": "Community Outreach",
                 "description": "Join us for our monthly community outreach program.",
-                "date": "Oct 24, 2025",
+                "date": "2026-02-15T10:00:00Z",
                 "time": "10:00 AM",
                 "location": "Central Park, NY",
                 "link": "/donate"
@@ -129,7 +129,7 @@
                 "image": "/hero-placeholder.png",
                 "title": "Sustainability Workshop",
                 "description": "Learn about sustainable living and how to reduce your carbon footprint.",
-                "date": "Nov 12, 2025",
+                "date": "2026-03-12T14:00:00Z",
                 "time": "2:00 PM",
                 "location": "Green Hub, London",
                 "link": "/join"
@@ -138,7 +138,7 @@
                 "image": "/hero-placeholder.png",
                 "title": "Resource Drive",
                 "description": "Helping families in need with essential resources.",
-                "date": "Dec 05, 2025",
+                "date": "2026-04-05T09:00:00Z",
                 "time": "9:00 AM",
                 "location": "Global Plaza, Berlin",
                 "link": "/volunteer"

@@ -12,7 +12,7 @@ interface HeroData {
 }
 
 const Hero = ({ data }: { data: HeroData }) => {
-    const { label, title, description, cta = { label: "Donate", href: "/donate" } } = data || {};
+    const { label, title, description, cta = { label: "Read Story", href: "/donate" } } = data || {};
 
     return (
         <section id="home" className={styles.hero}>
@@ -24,11 +24,11 @@ const Hero = ({ data }: { data: HeroData }) => {
                 <p className={styles['hero__description']}>
                     {description}
                 </p>
-                <div className={styles['hero__cta-wrapper']}>
+                {/* <div className={styles['hero__cta-wrapper']}>
                     <Link href={cta.href || "/donate"} className={styles['hero__btn']}>
                         {cta.label}
                     </Link>
-                </div>
+                </div> */}
             </div>
         </section>
     );

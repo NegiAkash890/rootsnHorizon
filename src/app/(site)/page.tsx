@@ -110,22 +110,38 @@ export default async function Home() {
 
   return (
     <main className={styles.page}>
-      <div className={styles.topSection}>
-        <div className={styles.heroWrapper}>
-          <Hero data={heroData} />
+      {heroData?.visible !== false && (
+        <div className={styles.topSection}>
+          <div className={styles.heroWrapper}>
+            <Hero data={heroData} />
+          </div>
+          <div className={styles.heroImageWrapper}>
+            <HeroImage image={heroData?.image} />
+          </div>
         </div>
-        <div className={styles.heroImageWrapper}>
-          <HeroImage image={heroData?.image} />
-        </div>
-      </div>
+      )}
       <div className={styles.main}>
-        <AboutSection data={sanityData?.aboutSection || content.aboutSection} />
-        <StatsSection data={sanityData?.statsSection || content.stats} />
-        <TeamSection data={sanityData?.teamSection} />
-        <FeaturedStories data={sanityData?.featuredStoriesSection || content.featuredStories} />
-        <GetInvolved data={getInvolvedData} />
-        <GallerySection data={sanityData?.gallerySection} />
-        <ContactForm data={sanityData?.contactSection} />
+        {sanityData?.aboutSection?.visible !== false && (
+          <AboutSection data={sanityData?.aboutSection || content.aboutSection} />
+        )}
+        {sanityData?.statsSection?.visible !== false && (
+          <StatsSection data={sanityData?.statsSection || content.stats} />
+        )}
+        {sanityData?.teamSection?.visible !== false && (
+          <TeamSection data={sanityData?.teamSection} />
+        )}
+        {sanityData?.featuredStoriesSection?.visible !== false && (
+          <FeaturedStories data={sanityData?.featuredStoriesSection || content.featuredStories} />
+        )}
+        {sanityData?.getInvolvedSection?.visible !== false && (
+          <GetInvolved data={getInvolvedData} />
+        )}
+        {sanityData?.gallerySection?.visible !== false && (
+          <GallerySection data={sanityData?.gallerySection} />
+        )}
+        {sanityData?.contactSection?.visible !== false && (
+          <ContactForm data={sanityData?.contactSection} />
+        )}
       </div>
     </main>
   );

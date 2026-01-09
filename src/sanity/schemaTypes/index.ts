@@ -12,6 +12,7 @@ import { event } from './event'
 import { eventsSection } from './eventsSection'
 import { testimonial } from './testimonial'
 import { testimonialsSection } from './testimonialsSection'
+import { teamPage } from './teamPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
     types: [
@@ -36,6 +37,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         eventsSection,
         gallerySection,
         testimonial,
-        testimonialsSection
+        testimonialsSection,
+        teamPage
     ],
 }

@@ -49,7 +49,7 @@ const GetInvolved = ({ data }: { data: GetInvolvedData }) => {
                                 </div>
                                 <p className={styles['card__description']}>{card.description}</p>
 
-                                <div className={styles['card__meta']}>
+                                {/* <div className={styles['card__meta']}>
                                     <div className={styles['card__meta-item']}>
                                         <FaCalendarAlt className={styles['card__meta-icon']} />
                                         <span>
@@ -66,7 +66,7 @@ const GetInvolved = ({ data }: { data: GetInvolvedData }) => {
                                         <FaMapMarkerAlt className={styles['card__meta-icon']} />
                                         <span>{card.location || "Online"}</span>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     ))}

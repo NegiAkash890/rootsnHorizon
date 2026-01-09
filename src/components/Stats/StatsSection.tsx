@@ -48,12 +48,26 @@ const StatsSection = ({ data }: { data: StatsSectionData }) => {
                 <div className={styles['stats-section__grid']}>
                     {items.map((item: StatItem, index: number) => (
                         <div key={index} className={styles['stat-card']}>
-                            <div className={styles['stat-card__icon-wrapper']}>
-                                <span className={styles['stat-card__icon']}>
-                                    {/* Handle complex logic: if item.icon is string, use map. If not, default. */}
-                                    {(typeof item.icon === 'string' && iconMap[item.icon]) ? iconMap[item.icon] : <FaHome />}
-                                </span>
-                            </div>
+                            {typeof item.icon === 'object' && item.icon?.asset?.url ? (
+                                <img
+                                    src={item.icon.asset.url}
+                                    alt={item.label || "stat icon"}
+                                    className={styles['stat-card__icon-image']}
+                                    style={{
+                                        width: '120px',
+                                        height: '120px',
+                                        objectFit: 'contain',
+                                        marginBottom: '8px'
+                                    }}
+                                />
+                            ) : (
+                                <div className={styles['stat-card__icon-wrapper']}>
+                                    <span className={styles['stat-card__icon']}>
+                                        {/* Handle complex logic: if item.icon is string, use map. If not, default. */}
+                                        {(typeof item.icon === 'string' && iconMap[item.icon]) ? iconMap[item.icon] : <FaHome />}
+                                    </span>
+                                </div>
+                            )}
                             <div className={styles['stat-card__number']}>{item.number}</div>
                             <div className={styles['stat-card__text']}>{item.label}</div>
                         </div>

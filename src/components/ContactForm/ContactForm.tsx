@@ -92,14 +92,7 @@ const ContactForm = ({ data }: { data?: ContactFormData }) => {
 
                 <form className={styles.form} onSubmit={handleSubmit} noValidate>
                     {errorMessage && (
-                        <div style={{
-                            padding: '12px',
-                            backgroundColor: '#fee',
-                            color: 'red',
-                            marginBottom: '20px',
-                            borderLeft: '4px solid red',
-                            fontSize: '0.9rem'
-                        }}>
+                        <div className={styles['form__error-message']}>
                             {errorMessage}
                         </div>
                     )}

@@ -3,6 +3,7 @@ import { client } from "@/sanity/client";
 export const revalidate = 60; // Revalidate every 60 seconds
 
 import styles from "./page.module.css";
+import storiesStyles from "./stories.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
@@ -80,18 +81,9 @@ export default async function StoriesIndexPage() {
                 <h1 className={styles.heroTitle}>Stories</h1>
             </section>
 
-            <div className={styles.container} style={{ maxWidth: '75rem', margin: '0 auto', padding: '0 20px' }}>
-                <Link href="/" style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    marginBottom: '20px',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    color: '#000',
-                    textDecoration: 'none'
-                }}>
-                    <FaArrowLeft style={{ color: 'var(--primary)' }} /> Back to Home
+            <div className={storiesStyles.navContainer}>
+                <Link href="/" className={storiesStyles.backLink}>
+                    <FaArrowLeft className={storiesStyles.backIcon} /> Back to Home
                 </Link>
             </div>
 

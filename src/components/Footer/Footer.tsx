@@ -86,7 +86,7 @@ const Footer = ({ data }: { data: FooterData }) => {
 
                 <div className={styles['footer__bottom-section']}>
                     <p>© {new Date().getFullYear()} Roots & Horizon. All rights reserved.</p>
-                    <div style={{ display: 'flex', gap: '20px' }}>
+                    <div className={styles['footer__bottom-links']}>
                         <Link href="/privacy" className={styles['footer__link']}>Privacy Policy</Link>
                         <Link href="/terms" className={styles['footer__link']}>Terms of Service</Link>
                     </div>

@@ -57,10 +57,10 @@ const HeroImage = ({ image, alt = "Hero Image" }: HeroImageProps) => {
 
             {isOpen && (
                 <div className={styles.modal} onClick={() => setIsOpen(false)}>
-                    <button className={styles.closeButton} onClick={() => setIsOpen(false)}>
-                        <FaTimes />
-                    </button>
                     <div className={styles.modalImageWrapper} onClick={(e) => e.stopPropagation()}>
+                        <button className={styles.closeButton} onClick={() => setIsOpen(false)}>
+                            <FaTimes />
+                        </button>
                         <Image
                             src={imageUrl}
                             alt={alt}

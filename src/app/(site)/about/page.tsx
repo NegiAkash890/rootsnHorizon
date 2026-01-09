@@ -6,6 +6,7 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 import { PortableText } from "@portabletext/react";
 import styles from "../page.module.css";
+import aboutStyles from "./about.module.css";
 import Image from "next/image";
 
 // Define the data type
@@ -56,29 +57,20 @@ export default async function AboutPage() {
 
     return (
         <main className={styles.page}>
-            <div className={styles.container} style={{ padding: '100px 20px' }}>
-                <Link href="/" style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    marginBottom: '20px',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    color: '#000',
-                    textDecoration: 'none'
-                }}>
-                    <FaArrowLeft style={{ color: 'var(--primary)' }} /> Back to Home
+            <div className={`${styles.container} ${aboutStyles.aboutContainer}`}>
+                <Link href="/" className={aboutStyles.backLink}>
+                    <FaArrowLeft className={aboutStyles.backIcon} /> Back to Home
                 </Link>
 
-                <h1 style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '40px' }}>{title}</h1>
+                <h1 className={aboutStyles.title}>{title}</h1>
 
                 {imageUrl && (
-                    <div style={{ position: 'relative', width: '100%', height: '400px', marginBottom: '40px', borderRadius: '12px', overflow: 'hidden' }}>
-                        <Image src={imageUrl} alt={title} fill style={{ objectFit: 'cover' }} />
+                    <div className={aboutStyles.mainImageWrapper}>
+                        <Image src={imageUrl} alt={title} fill className={aboutStyles.mainImage} />
                     </div>
                 )}
 
-                <div style={{ maxWidth: '800px', fontSize: '1.25rem', lineHeight: '1.8' }}>
+                <div className={aboutStyles.contentWrapper}>
                     {/* Main Content: Portable Text or Fallback */}
                     {data?.mainContent ? (
                         <div className="portable-text">
@@ -103,10 +95,10 @@ export default async function AboutPage() {
                         </>
                     )}
 
-                    <h2 style={{ fontSize: '2.5rem', marginTop: '60px', marginBottom: '20px' }}>{missionTitle}</h2>
+                    <h2 className={aboutStyles.sectionHeading}>{missionTitle}</h2>
                     <p>{missionDesc}</p>
 
-                    <h2 style={{ fontSize: '2.5rem', marginTop: '60px', marginBottom: '20px' }}>{visionTitle}</h2>
+                    <h2 className={aboutStyles.sectionHeading}>{visionTitle}</h2>
                     <p>{visionDesc}</p>
                 </div>
             </div>
