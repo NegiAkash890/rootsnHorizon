@@ -82,8 +82,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: auto;
-    aspect-ratio: 1 / 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* aspect-ratio: 1 / 1; -- Removed to let it fill height */
     z-index: 1;
     /* Behind content */
   }

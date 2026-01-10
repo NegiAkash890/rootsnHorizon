@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import DonationModal from "../DonationModal/DonationModal";
+import BankDetailsModal from "../BankDetailsModal/BankDetailsModal";
+// import DonationModal from "../DonationModal/DonationModal"; // Replaced
 import { FaBars, FaHeart } from "react-icons/fa";
 import { useState } from "react";
 import styles from "./Navbar.module.css";
@@ -18,6 +19,17 @@ interface NavLink {
     anchor?: string;
 }
 
+interface BankDetails {
+    heading?: string;
+    bankName?: string;
+    accountName?: string;
+    accountNumber?: string;
+    ifscCode?: string;
+    branchName?: string;
+    upiId?: string;
+    qrCode?: any;
+}
+
 interface NavbarData {
     topLinks?: NavLink[];
     mainLinks?: NavLink[];
@@ -26,6 +38,7 @@ interface NavbarData {
         href: string;
         anchor?: string;
     };
+    bankDetails?: BankDetails;
 }
 
 const sectionTypeToAnchor: Record<string, string> = {
@@ -63,34 +76,60 @@ const Navbar = ({ data }: { data: NavbarData }) => {
     // const topLinks = data?.topLinks || [];
     const mainLinks = data?.mainLinks || [];
     const cta = data?.cta || { label: "Donate", href: "/donate" };
+    const bankDetails = data?.bankDetails;
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDonationOpen, setIsDonationOpen] = useState(false);
 
     const handleDonationClick = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsDonationOpen(true);
+        // Only open modal if we have bank details and the label implies donation
+        if (cta.label.includes('Donate') && bankDetails) {
+            e.preventDefault();
+            setIsDonationOpen(true);
+        }
+    };
+
+    const DonateButton = ({ className, isFab = false }: { className: string, isFab?: boolean }) => {
+        const content = (
+            <>
+                {!isFab && cta.label}
+                <FaHeart />
+            </>
+        );
+
+        if (bankDetails) {
+            return (
+                <button
+                    onClick={() => setIsDonationOpen(true)}
+                    className={className}
+                    aria-label={isFab ? "Donate" : undefined}
+                >
+                    {content}
+                </button>
+            );
+        }
+
+        return (
+            <Link
+                href={cta.href}
+                className={className}
+                aria-label={isFab ? "Donate" : undefined}
+            >
+                {content}
+            </Link>
+        );
     };
 
     return (
         <header className={styles.header}>
-            <DonationModal isOpen={isDonationOpen} onClose={() => setIsDonationOpen(false)} />
+            {bankDetails && (
+                <BankDetailsModal
+                    isOpen={isDonationOpen}
+                    onClose={() => setIsDonationOpen(false)}
+                    bankDetails={bankDetails}
+                />
+            )}
 
-            {/* Top Utility Bar */}
-            {/* <div className={styles['top-bar']}>
-                <div className={styles['top-bar__container']}>
-                    {topLinks.map((link: any, index: number) => {
-                        const { label, href } = getLinkData(link);
-                        return (
-                            <Link key={index} href={href} className={styles['top-bar__link']}>
-                                {label}
-                            </Link>
-                        );
-                    })}
-                </div>
-            </div> */}
-
-            {/* Main Navbar */}
             <nav className={styles.navbar}>
                 <div className={styles['navbar__container']}>
                     <Link href="/" className={styles['navbar__logo-wrapper']}>
@@ -117,14 +156,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     </ul>
 
                     <div className={styles.actions}>
-                        <a
-                            href={cta.href}
-                            onClick={cta.label === 'Donate' ? handleDonationClick : undefined}
-                            className={styles['navbar__btn']}
-                        >
-                            {cta.label}
-                            {cta.label === 'Donate' && <FaHeart />}
-                        </a>
+                        <DonateButton className={styles['navbar__btn']} />
                         <button
                             className={styles['navbar__toggle']}
                             aria-label="Toggle menu"
@@ -135,6 +167,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     </div>
                 </div>
             </nav>
+
         </header>
     );
 };

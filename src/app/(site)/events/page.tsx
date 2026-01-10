@@ -74,6 +74,11 @@ export default function EventsPage() {
                         </button>
                     ))}
                 </div>
+                <div className={styles.alignedRow}>
+                    <Link href="/" className={styles.backLink} style={{ marginBottom: 0 }}>
+                        <FaArrowLeft /> Back to Home
+                    </Link>
+                </div>
 
                 {loading ? (
                     <div className={styles.loading}>Loading events...</div>

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import styles from "./Footer.module.css";
-// In a real app, I'd use an icon library like react-icons or lucide-react.
-// For now, I'll use text placeholders or simple SVGs if needed, but text is safer without extra deps.
-// I will just use text abbreviations for Socials for simplicity or simple inline SVGs.
+import Image from "next/image";
+import { urlFor } from "@/sanity/image";
+
 
 interface FooterLink {
     label: string;
@@ -18,6 +18,7 @@ interface FooterSection {
     links: FooterLink[];
 }
 
+
 interface FooterData {
     description?: string;
     sections?: FooterSection[];
@@ -28,6 +29,7 @@ const Footer = ({ data }: { data: FooterData }) => {
     const description = data?.description || "";
     const sections = data?.sections || [];
     const socialLinks = data?.socialLinks || [];
+
 
     const getIcon = (platform: string) => {
         switch (platform) {

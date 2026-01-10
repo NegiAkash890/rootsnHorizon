@@ -55,7 +55,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; -- Removed to fix back-button scroll restoration */
   scroll-padding-top: var(--header-height);
 }
 

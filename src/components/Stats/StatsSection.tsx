@@ -68,8 +68,10 @@ const StatsSection = ({ data }: { data: StatsSectionData }) => {
                                     </span>
                                 </div>
                             )}
-                            <div className={styles['stat-card__number']}>{item.number}</div>
-                            <div className={styles['stat-card__text']}>{item.label}</div>
+                            <div className={styles['stat-card__content']}>
+                                <div className={styles['stat-card__number']}>{item.number}</div>
+                                <div className={styles['stat-card__text']}>{item.label}</div>
+                            </div>
                         </div>
                     ))}
                 </div>

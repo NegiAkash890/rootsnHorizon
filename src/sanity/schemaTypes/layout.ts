@@ -83,6 +83,21 @@ export const navbar = defineType({
                 defineField({ name: 'href', type: 'string' }),
                 defineField({ name: 'anchor', type: 'string', title: 'Homepage Anchor' })
             ]
+        }),
+        defineField({
+            name: 'bankDetails',
+            title: 'Bank Details',
+            type: 'object',
+            fields: [
+                defineField({ name: 'heading', title: 'Heading', type: 'string', initialValue: 'Donate / Support Us' }),
+                defineField({ name: 'bankName', title: 'Bank Name', type: 'string' }),
+                defineField({ name: 'accountName', title: 'Account Name', type: 'string' }),
+                defineField({ name: 'accountNumber', title: 'Account Number', type: 'string' }),
+                defineField({ name: 'ifscCode', title: 'IFSC Code', type: 'string' }),
+                defineField({ name: 'branchName', title: 'Branch Name', type: 'string' }),
+                defineField({ name: 'upiId', title: 'UPI ID', type: 'string' }),
+                defineField({ name: 'qrCode', title: 'QR Code', type: 'image', options: { hotspot: true } }),
+            ]
         })
     ]
 })

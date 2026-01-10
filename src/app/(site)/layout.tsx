@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { client } from "@/sanity/client";
+import MobileDonateFab from "@/components/MobileDonateFab/MobileDonateFab";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -21,6 +22,12 @@ async function getLayoutData() {
         targetSection->{
           heading,
           _type
+        }
+      },
+      bankDetails {
+        ...,
+        qrCode {
+          asset->
         }
       }
     },
@@ -58,6 +65,7 @@ export default async function SiteLayout({
       <Navbar data={navbar} />
       {children}
       <Footer data={footer} />
+      <MobileDonateFab bankDetails={navbar?.bankDetails} cta={navbar?.cta} />
     </>
   );
 }

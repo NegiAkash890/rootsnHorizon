@@ -66,6 +66,12 @@
     gap: 16px;
 }
 
+.stat-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .stat-card__icon-wrapper {
     width: 120px;
     height: auto;

@@ -151,3 +151,46 @@
     display: flex;
     gap: 20px;
 }
+
+.footer__bank-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+@media (max-width: 480px) {
+    .footer__bank-details {
+        align-items: center;
+    }
+}
+
+.footer__qr-code {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 150px;
+}
+
+.footer__qr-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.footer__bank-info {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.footer__bank-info p {
+    margin: 4px 0;
+    word-break: break-word;
+}
+
+.footer__bank-info strong {
+    color: var(--primary);
+    margin-right: 5px;
+}
