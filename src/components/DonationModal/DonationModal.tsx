@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
+import Image from 'next/image';
 import styles from './DonationModal.module.css';
 
 interface DonationModalProps {
@@ -32,11 +33,13 @@ export default function DonationModal({ isOpen, onClose }: DonationModalProps) {
                     <p className={styles.subtitle}>Scan the QR code to donate directly to our NGO foundation.</p>
 
                     <div className={styles.qrContainer}>
-                        {/* INSTRUCTION: Replace this div with your actual QR code image */}
-                        {/* <Image src="/path-to-qr.png" width={220} height={220} alt="Donation QR" /> */}
-                        <div className={styles.qrPlaceholder}>
-                            QR Code Here
-                        </div>
+                        <Image
+                            src="/donation-qr.png"
+                            width={220}
+                            height={220}
+                            alt="Donation QR Code"
+                            className={styles.qrImage}
+                        />
                     </div>
 
                     <div className={styles.divider}>
