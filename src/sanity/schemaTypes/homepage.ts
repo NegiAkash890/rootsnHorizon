@@ -22,11 +22,7 @@ export const homepage = defineType({
             title: 'Hero Section',
             type: 'heroSection'
         }),
-        defineField({
-            name: 'heroSidebar',
-            title: 'Hero Sidebar (Optional)',
-            type: 'heroSidebar'
-        }),
+
         defineField({
             name: 'statsSection',
             title: 'Stats Section',

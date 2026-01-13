@@ -45,48 +45,19 @@ export const structure = (S: StructureBuilder) =>
 
             S.divider(),
 
-            // 3. Content Library (Reusable Data)
-            S.listItem()
-                .title('Content Library')
-                .child(
-                    S.list()
-                        .title('Content Library')
-                        .items([
-                            S.documentTypeListItem('story').title('Stories & Articles'),
-                            // Add other reusable content types here (e.g. Testimonials, Team Members)
-                        ])
-                ),
-
-            S.divider(),
-
-            // 4. Data Submissions
-            S.listItem()
-                .title('Inbound Data')
-                .child(
-                    S.list()
-                        .title('Submissions')
-                        .items([
-                            S.documentTypeListItem('contactSubmission').title('Contact Form Submissions'),
-                        ])
-                ),
-
-            S.divider(),
-
             // 5. Advanced / Page Components
             // Grouping these keeps the root clean, but allows advanced editing of specific section documents
             S.listItem()
-                .title('Component Library (Advanced)')
+                .title('Home Page Sections')
                 .child(
                     S.list()
-                        .title('Page Components')
+                        .title('Section List')
                         .items([
-                            S.documentTypeListItem('heroSection').title('Hero Sections'),
-                            S.documentTypeListItem('heroSidebar').title('Hero Sidebars'),
-                            S.documentTypeListItem('statsSection').title('Stats Sections'),
-                            S.documentTypeListItem('aboutSection').title('About Sections'),
-                            S.documentTypeListItem('featuredStoriesSection').title('Featured Stories Sections'),
-                            S.documentTypeListItem('getInvolvedSection').title('Get Involved Sections'),
-                            S.documentTypeListItem('contactSection').title('Contact Sections'),
+                            S.documentTypeListItem('heroSection').title('Hero Section'),
+                            S.documentTypeListItem('aboutSection').title('About Section'),
+                            S.documentTypeListItem('statsSection').title('The Impact We Are Creating'),
+                            S.documentTypeListItem('featuredStoriesSection').title('News & Featured Stories'),
+                            S.documentTypeListItem('getInvolvedSection').title('Upcoming Events'),
                         ])
                 ),
         ])

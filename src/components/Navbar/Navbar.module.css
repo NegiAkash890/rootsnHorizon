@@ -35,7 +35,6 @@
 .top-bar__link {
     color: #fff;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
@@ -87,7 +86,6 @@
     font-weight: 700;
     font-size: 0.9rem;
     color: #FFF;
-    text-transform: uppercase;
     letter-spacing: 0.05em;
     position: relative;
     height: 100%;
@@ -116,7 +114,6 @@
     background-color: var(--primary);
     color: #000;
     font-weight: 900;
-    text-transform: uppercase;
     padding: 15px 30px;
     border: none;
     font-family: var(--font-heading);

@@ -25,7 +25,7 @@ export const teamPage = defineType({
             of: [
                 {
                     type: 'object',
-                    name: 'teamSection',
+                    name: 'teamSectionItem',
                     title: 'Team Section',
                     fields: [
                         defineField({

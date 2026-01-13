@@ -137,7 +137,6 @@ button {
   font-weight: 700;
   font-size: 1rem;
   border: none;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.2s ease;
 }

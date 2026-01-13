@@ -30,15 +30,4 @@ export const heroSection = defineType({
     ]
 })
 
-export const heroSidebar = defineType({
-    name: 'heroSidebar',
-    title: 'Hero Sidebar (Yellow Box)',
-    type: 'object',
-    fields: [
-        defineField({ name: 'internalTitle', title: 'Internal Title', type: 'string', initialValue: 'Main Sidebar' }),
-        defineField({ name: 'title', title: 'Title', type: 'string' }),
-        defineField({ name: 'description', title: 'Description', type: 'text' }),
-        defineField({ name: 'ctaLabel', title: 'CTA Label', type: 'string' }),
-        defineField({ name: 'ctaLink', title: 'CTA Link', type: 'string' })
-    ]
-})
+

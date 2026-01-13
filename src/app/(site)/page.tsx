@@ -21,7 +21,7 @@ async function getHomepageData() {
       ...,
       image { asset->{_id, url} }
     },
-    "heroSidebar": coalesce(heroSidebar->, heroSidebar),
+
     "statsSection": coalesce(statsSection->, statsSection) {
       ...,
       stats[] {

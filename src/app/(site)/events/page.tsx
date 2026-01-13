@@ -56,14 +56,10 @@ export default function EventsPage() {
     return (
         <main className={styles.page}>
             <div className={styles.container}>
-                <Link href="/" className={styles.backLink}>
-                    <FaArrowLeft /> Back to Home
-                </Link>
-
                 <h1 className={styles.title}>All Events</h1>
 
                 <div className={styles.filters}>
-                    {['all', 'upcoming', 'on-going', 'completed'].map((f) => (
+                    {['All', 'Upcoming', 'On-going', 'Completed'].map((f) => (
                         <button
                             key={f}
                             className={styles.filterBtn}
@@ -101,9 +97,9 @@ export default function EventsPage() {
                                             </div>
                                         </div>
                                         <div className={styles.content}>
-                                            <div className={styles.date}>
+                                            {/* <div className={styles.date}>
                                                 {event.date ? format(new Date(event.date), "MMM d, yyyy • h:mm a") : "Date TBD"}
-                                            </div>
+                                            </div> */}
                                             <h2 className={styles.cardTitle}>{event.title}</h2>
                                             <p className={styles.description}>{event.description}</p>
 
