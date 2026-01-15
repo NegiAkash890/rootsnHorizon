@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import { urlFor } from "@/sanity/image";
@@ -37,6 +37,7 @@ const Footer = ({ data }: { data: FooterData }) => {
             case 'twitter': return <FaTwitter />;
             case 'instagram': return <FaInstagram />;
             case 'linkedin': return <FaLinkedinIn />;
+            case 'youtube': return <FaYoutube />;
             default: return null;
         }
     };

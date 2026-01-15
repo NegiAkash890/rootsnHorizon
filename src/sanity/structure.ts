@@ -39,6 +39,8 @@ export const structure = (S: StructureBuilder) =>
                             S.listItem()
                                 .title('Team Page')
                                 .child(S.document().schemaType('teamPage').documentId('teamPage')),
+                            S.divider(),
+                            S.documentTypeListItem('genericPage').title('All Custom Pages'),
                             // Future pages can be added here
                         ])
                 ),

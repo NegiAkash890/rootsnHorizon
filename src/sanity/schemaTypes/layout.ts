@@ -162,7 +162,8 @@ export const footer = defineType({
                                     { title: 'Facebook', value: 'facebook' },
                                     { title: 'Twitter', value: 'twitter' },
                                     { title: 'Instagram', value: 'instagram' },
-                                    { title: 'LinkedIn', value: 'linkedin' }
+                                    { title: 'LinkedIn', value: 'linkedin' },
+                                    { title: 'Youtube', value: 'youtube' }
                                 ]
                             }
                         },
