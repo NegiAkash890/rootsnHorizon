@@ -15,12 +15,17 @@ const ptComponents = {
 export const revalidate = 60;
 
 export async function generateStaticParams() {
-    const query = `*[_type == "genericPage" || _type == "teamMember"]{ "slug": slug.current }`;
-    const pages = await client.fetch(query);
+    try {
+        const query = `*[_type == "genericPage" || _type == "teamMember"]{ "slug": slug.current }`;
+        const pages = await client.fetch(query);
 
-    return pages.map((page: { slug: string }) => ({
-        slug: page.slug,
-    }));
+        return pages.map((page: { slug: string }) => ({
+            slug: page.slug,
+        }));
+    } catch (error) {
+        console.error("Error generating static params for generic pages/team members:", error);
+        return [];
+    }
 }
 
 export default async function GenericPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -5,6 +5,7 @@ import styles from "./ContactForm.module.css";
 import { FaPaperPlane } from "react-icons/fa";
 import { submitContact } from "@/app/actions/contact";
 import SuccessPopup from "./SuccessPopup/SuccessPopup";
+import { sendGAEvent } from "@next/third-parties/google";
 
 interface ContactFormData {
     heading?: string;
@@ -54,6 +55,7 @@ const ContactForm = ({ data }: { data?: ContactFormData }) => {
         // Client-side validation
         const errors = validate(formData);
         if (Object.keys(errors).length > 0) {
+            sendGAEvent({ event: "contact_form_validation_error", value: Object.keys(errors).join(",") });
             setFieldErrors(errors);
             return;
         }
@@ -64,10 +66,12 @@ const ContactForm = ({ data }: { data?: ContactFormData }) => {
             const result = await submitContact(null, formData);
 
             if (result.success) {
+                sendGAEvent({ event: "contact_form_submit", value: "success" });
                 setSubmitterName(result.name || "Friend");
                 setPopupOpen(true);
                 form.reset(); // Reset using captured reference
             } else {
+                sendGAEvent({ event: "contact_form_submit", value: "failure" });
                 setErrorMessage(result.message || "An error occurred. Please try again.");
             }
         } catch (error) {

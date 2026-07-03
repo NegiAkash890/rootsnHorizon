@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaHeart } from "react-icons/fa";
 import BankDetailsModal from "../BankDetailsModal/BankDetailsModal";
+import { sendGAEvent } from "@next/third-parties/google";
 import styles from "./MobileDonateFab.module.css";
 
 interface BankDetails {
@@ -36,7 +37,10 @@ const MobileDonateFab = ({ bankDetails, cta }: MobileDonateFabProps) => {
             <>
                 <button
                     className={styles.mobileDonateFab}
-                    onClick={() => setIsDonationOpen(true)}
+                    onClick={() => {
+                        sendGAEvent({ event: "mobile_donate_click", value: "modal" });
+                        setIsDonationOpen(true);
+                    }}
                     aria-label="Donate"
                 >
                     <FaHeart />
@@ -55,6 +59,7 @@ const MobileDonateFab = ({ bankDetails, cta }: MobileDonateFabProps) => {
             href={safeCta.href}
             className={styles.mobileDonateFab}
             aria-label="Donate"
+            onClick={() => sendGAEvent({ event: "mobile_donate_click", value: "link" })}
         >
             <FaHeart />
         </Link>

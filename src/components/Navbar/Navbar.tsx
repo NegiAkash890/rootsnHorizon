@@ -6,6 +6,7 @@ import BankDetailsModal from "../BankDetailsModal/BankDetailsModal";
 // import DonationModal from "../DonationModal/DonationModal"; // Replaced
 import { FaBars, FaHeart } from "react-icons/fa";
 import { useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 import styles from "./Navbar.module.css";
 
 interface NavLink {
@@ -100,7 +101,10 @@ const Navbar = ({ data }: { data: NavbarData }) => {
         if (bankDetails) {
             return (
                 <button
-                    onClick={() => setIsDonationOpen(true)}
+                    onClick={() => {
+                        sendGAEvent({ event: "navbar_donate_click", value: "modal" });
+                        setIsDonationOpen(true);
+                    }}
                     className={className}
                     aria-label={isFab ? "Donate" : undefined}
                 >
@@ -114,6 +118,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                 href={cta.href}
                 className={className}
                 aria-label={isFab ? "Donate" : undefined}
+                onClick={() => sendGAEvent({ event: "navbar_donate_click", value: "link" })}
             >
                 {content}
             </Link>

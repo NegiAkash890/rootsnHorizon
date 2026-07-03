@@ -60,12 +60,17 @@ async function getStory(slug: string) {
 
 // Generate static params for all stories
 export async function generateStaticParams() {
-    const query = `*[_type == "story"]{ "slug": slug.current }`;
-    const stories = await client.fetch(query);
+    try {
+        const query = `*[_type == "story"]{ "slug": slug.current }`;
+        const stories = await client.fetch(query);
 
-    return stories.map((story: any) => ({
-        slug: story.slug,
-    }));
+        return stories.map((story: any) => ({
+            slug: story.slug,
+        }));
+    } catch (error) {
+        console.error("Error generating static params for stories:", error);
+        return [];
+    }
 }
 
 export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
