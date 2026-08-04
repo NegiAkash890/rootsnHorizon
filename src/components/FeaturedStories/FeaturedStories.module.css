@@ -199,13 +199,13 @@
     justify-content: center;
     gap: 10px;
     padding: 16px 40px;
-    border: 1px solid #000;
+    border: 1.5px solid var(--primary);
     background: transparent;
-    color: #000;
+    color: var(--primary);
     font-weight: 700;
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -213,7 +213,7 @@
 .featured__see-all:hover {
     background-color: var(--primary);
     border-color: var(--primary);
-    color: #000;
+    color: #FFFFFF;
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }

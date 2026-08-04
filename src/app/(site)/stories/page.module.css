@@ -76,7 +76,7 @@
     padding: 4px 12px;
     font-size: 0.8rem;
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: capitalize;
     margin-bottom: 12px;
     align-self: flex-start;
 }

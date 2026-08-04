@@ -122,7 +122,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     />
                 )}
 
-                {/* Logo */}
+                {/* Logo & Brand Name */}
                 <Box sx={{
                     position: { xs: 'absolute', md: 'static' },
                     left: { xs: '50%', md: 'auto' },
@@ -131,8 +131,8 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     alignItems: 'center',
                     zIndex: 1,
                 }}>
-                    <Link href="/" style={{ display: "flex", alignItems: "center" }}>
-                        <Box sx={{ width: { xs: 50, md: 60 }, height: { xs: 50, md: 60 }, position: "relative", overflow: "hidden", borderRadius: "50%" }}>
+                    <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+                        <Box sx={{ width: { xs: 45, md: 55 }, height: { xs: 45, md: 55 }, position: "relative", overflow: "hidden", borderRadius: "50%", flexShrink: 0 }}>
                             <Image
                                 src="/logo.jpg"
                                 alt="Roots & Horizon Logo"
@@ -141,6 +141,19 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                                 priority
                             />
                         </Box>
+                        <Typography
+                            component="span"
+                            sx={{
+                                color: "#FFFFFF",
+                                fontWeight: 800,
+                                fontSize: { xs: "1.05rem", md: "1.2rem" },
+                                letterSpacing: "-0.02em",
+                                whiteSpace: "nowrap",
+                                fontFamily: "var(--font-primary)",
+                            }}
+                        >
+                            Roots 'n Horizon
+                        </Typography>
                     </Link>
                 </Box>
 

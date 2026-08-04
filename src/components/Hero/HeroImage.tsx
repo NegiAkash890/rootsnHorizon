@@ -38,22 +38,29 @@ const HeroImage = ({ image, alt = "Hero Image" }: HeroImageProps) => {
 
     return (
         <>
-            <div className={styles.imageContainer}>
-                <Image
-                    src={imageUrl}
-                    alt={alt}
-                    fill
-                    className={styles.image}
-                    priority
-                />
-                <button
-                    className={styles.zoomButton}
-                    onClick={() => setIsOpen(true)}
-                    aria-label="Zoom Image"
+            <div
+                className={styles.imageContainer}
+                onClick={() => setIsOpen(true)}
+                role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsOpen(true); }}
+                    aria-label="View hero image in full view"
                 >
-                    <FaSearchPlus />
-                </button>
-            </div>
+                    <Image
+                        src={imageUrl}
+                        alt={alt}
+                        fill
+                        className={styles.image}
+                        priority
+                    />
+                    <button
+                        className={styles.zoomButton}
+                        onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}
+                        aria-label="Zoom Image"
+                    >
+                        <FaSearchPlus />
+                    </button>
+                </div>
 
             {isOpen && (
                 <div className={styles.modal} onClick={() => setIsOpen(false)}>
