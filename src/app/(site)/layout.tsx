@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { client } from "@/sanity/client";
 import MobileDonateFab from "@/components/MobileDonateFab/MobileDonateFab";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -64,6 +65,7 @@ export default async function SiteLayout({
     <>
       <Navbar data={navbar} />
       {children}
+      <Breadcrumbs />
       <Footer data={footer} />
       <MobileDonateFab bankDetails={navbar?.bankDetails} cta={navbar?.cta} />
     </>

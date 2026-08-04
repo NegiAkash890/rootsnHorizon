@@ -1,11 +1,11 @@
 .storiesPage {
-    padding-top: var(--header-height);
+    padding-top: 110px;
 }
 
 .hero {
     background-color: var(--primary);
-    padding: 80px 20px;
-    margin-bottom: 60px;
+    padding: 60px 20px;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,7 +58,6 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    /* Ensures footer sticks if we had one, but good for height balance */
 }
 
 .cardImage {
@@ -116,15 +115,27 @@
 @media (max-width: 900px) {
     .gridContainer {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
     }
 }
 
 @media (max-width: 600px) {
-    .gridContainer {
-        grid-template-columns: 1fr;
+    .storiesPage {
+        padding-top: 85px;
+    }
+
+    .hero {
+        padding: 40px 16px;
+        margin-bottom: 30px;
     }
 
     .heroTitle {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .gridContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 16px;
     }
 }

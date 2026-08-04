@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { FaHeart } from "react-icons/fa";
+import Fab from "@mui/material/Fab";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import BankDetailsModal from "../BankDetailsModal/BankDetailsModal";
 import { sendGAEvent } from "@next/third-parties/google";
-import styles from "./MobileDonateFab.module.css";
 
 interface BankDetails {
     heading?: string;
@@ -32,19 +32,38 @@ const MobileDonateFab = ({ bankDetails, cta }: MobileDonateFabProps) => {
     // Default CTA if not provided
     const safeCta = cta || { label: "Donate", href: "/donate" };
 
+    const fabStyles = {
+        position: "fixed",
+        bottom: "calc(20px + env(safe-area-inset-bottom))",
+        right: "calc(20px + env(safe-area-inset-right))",
+        width: 60,
+        height: 60,
+        backgroundColor: "primary.main",
+        color: "primary.contrastText",
+        zIndex: 2147483647,
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+        display: { xs: "flex", md: "none" },
+        "&:hover": {
+            backgroundColor: "primary.light",
+        },
+        "&:active": {
+            transform: "scale(0.95)",
+        },
+    };
+
     if (bankDetails) {
         return (
             <>
-                <button
-                    className={styles.mobileDonateFab}
+                <Fab
+                    sx={fabStyles}
                     onClick={() => {
                         sendGAEvent({ event: "mobile_donate_click", value: "modal" });
                         setIsDonationOpen(true);
                     }}
                     aria-label="Donate"
                 >
-                    <FaHeart />
-                </button>
+                    <FavoriteIcon />
+                </Fab>
                 <BankDetailsModal
                     isOpen={isDonationOpen}
                     onClose={() => setIsDonationOpen(false)}
@@ -55,14 +74,15 @@ const MobileDonateFab = ({ bankDetails, cta }: MobileDonateFabProps) => {
     }
 
     return (
-        <Link
+        <Fab
+            component={Link}
             href={safeCta.href}
-            className={styles.mobileDonateFab}
+            sx={fabStyles}
             aria-label="Donate"
             onClick={() => sendGAEvent({ event: "mobile_donate_click", value: "link" })}
         >
-            <FaHeart />
-        </Link>
+            <FavoriteIcon />
+        </Fab>
     );
 };
 

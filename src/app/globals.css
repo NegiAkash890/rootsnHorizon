@@ -54,6 +54,24 @@
   --header-height: 80px;
 }
 
+@media (max-width: 768px) {
+  :root {
+    --text-5xl: 2.25rem;
+    --text-4xl: 1.875rem;
+    --text-3xl: 1.5rem;
+    --text-2xl: 1.25rem;
+    --text-xl: 1.125rem;
+    --text-size-body: 1rem;
+    --line-height-body: 1.6;
+    --header-height: 70px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 html {
   /* scroll-behavior: smooth; -- Removed to fix back-button scroll restoration */
   scroll-padding-top: var(--header-height);
@@ -158,4 +176,41 @@ button {
 .section {
   padding: 5rem 0;
   /* 80px */
+}
+
+/* NProgress Client Navigation Loading Bar Overrides */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: var(--primary, #95C11F) !important;
+  position: fixed !important;
+  z-index: 999999 !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px !important;
+}
+
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #95C11F, 0 0 5px #95C11F !important;
+  opacity: 1.0;
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Ambient Background Glow Accents */
+.glowingOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  background: radial-gradient(circle, var(--primary, #95C11F) 0%, rgba(149, 193, 31, 0) 70%);
 }

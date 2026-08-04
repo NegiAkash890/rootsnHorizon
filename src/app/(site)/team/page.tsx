@@ -1,10 +1,19 @@
 
+import type { Metadata } from "next";
 import { client } from "@/sanity/client";
 import Image from "next/image";
 import styles from "./page.module.css";
-// import Link from "next/link"; // Unused for now
 
 export const revalidate = 60; // Revalidate every 60 seconds
+
+export const metadata: Metadata = {
+    title: "Our Team",
+    description: "Meet the dedicated team, leaders, and volunteers behind Roots & Horizon.",
+    openGraph: {
+        title: "Our Team | Roots & Horizon",
+        description: "Meet the dedicated team, leaders, and volunteers behind Roots & Horizon.",
+    },
+};
 
 async function getTeamData() {
     const query = `*[_type == "teamPage"][0] {
@@ -41,6 +50,8 @@ async function getTeamData() {
     }
 }
 
+import BackButton from "@/components/BackButton/BackButton";
+
 export default async function TeamPage() {
     const data = await getTeamData();
 
@@ -49,6 +60,7 @@ export default async function TeamPage() {
             <main className={styles.page}>
                 <div className={styles.header}>
                     <div className="container">
+                        <BackButton fallbackHref="/" />
                         <h1 className={styles.title}>Our Team</h1>
                         <p className={styles.description}>Meet the people behind Roots & Horizon.</p>
                     </div>
@@ -71,6 +83,10 @@ export default async function TeamPage() {
                     {description && <p className={styles.description}>{description}</p>}
                 </div>
             </section>
+
+            <div className="container" style={{ paddingTop: '1.5rem' }}>
+                <BackButton fallbackHref="/" />
+            </div>
 
             {/* Team Sections */}
             <div className={styles.content}>

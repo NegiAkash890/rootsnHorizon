@@ -10,6 +10,11 @@
     "studio": "sanity dev --port 3333"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.2.0",
+    "@mui/material": "^9.2.0",
+    "@mui/material-nextjs": "^9.1.1",
     "@next/third-parties": "^16.2.10",
     "@portabletext/react": "^6.0.0",
     "@sanity/vision": "^5.1.0",

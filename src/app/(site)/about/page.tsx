@@ -1,13 +1,20 @@
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { PortableText } from "@portabletext/react";
 import { client } from "@/sanity/client";
+import BackButton from "@/components/BackButton/BackButton";
+import aboutStyles from "./about.module.css";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
-import { PortableText } from "@portabletext/react";
-import styles from "../page.module.css";
-import aboutStyles from "./about.module.css";
-import Image from "next/image";
+export const metadata: Metadata = {
+    title: "About Us",
+    description: "Learn about Roots & Horizon's mission, vision, and core values in empowering displaced and marginalized communities worldwide.",
+    openGraph: {
+        title: "About Us | Roots & Horizon",
+        description: "Learn about Roots & Horizon's mission, vision, and core values in empowering displaced and marginalized communities worldwide.",
+    },
+};
 
 // Define the data type
 type AboutPageData = {
@@ -56,13 +63,15 @@ export default async function AboutPage() {
     const imageUrl = data?.image?.asset?.url;
 
     return (
-        <main className={styles.page}>
-            <div className={`${styles.container} ${aboutStyles.aboutContainer}`}>
-                <Link href="/" className={aboutStyles.backLink}>
-                    <FaArrowLeft className={aboutStyles.backIcon} /> Back to Home
-                </Link>
+        <main className={aboutStyles.page}>
+            <section className={aboutStyles.header}>
+                <div className="container">
+                    <h1 className={aboutStyles.title}>{title}</h1>
+                </div>
+            </section>
 
-                <h1 className={aboutStyles.title}>{title}</h1>
+            <div className={aboutStyles.aboutContainer}>
+                <BackButton fallbackHref="/" />
 
                 {imageUrl && (
                     <div className={aboutStyles.mainImageWrapper}>

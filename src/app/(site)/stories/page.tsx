@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import { client } from "@/sanity/client";
 
 export const revalidate = 60; // Revalidate every 60 seconds
+
+export const metadata: Metadata = {
+    title: "Impact Stories & News",
+    description: "Read inspiring stories, impact reports, and updates on Roots & Horizon's humanitarian efforts worldwide.",
+    openGraph: {
+        title: "Impact Stories & News | Roots & Horizon",
+        description: "Read inspiring stories, impact reports, and updates on Roots & Horizon's humanitarian efforts worldwide.",
+    },
+};
 
 import styles from "./page.module.css";
 import storiesStyles from "./stories.module.css";
@@ -72,6 +82,8 @@ async function getAllStories() {
     return jsonStories;
 }
 
+import BackButton from "@/components/BackButton/BackButton";
+
 export default async function StoriesIndexPage() {
     const stories = await getAllStories();
 
@@ -81,10 +93,8 @@ export default async function StoriesIndexPage() {
                 <h1 className={styles.heroTitle}>Stories</h1>
             </section>
 
-            <div className={storiesStyles.navContainer}>
-                <Link href="/" className={storiesStyles.backLink}>
-                    <FaArrowLeft className={storiesStyles.backIcon} /> Back to Home
-                </Link>
+            <div className={storiesStyles.navContainer} style={{ paddingTop: '1.5rem' }}>
+                <BackButton fallbackHref="/" />
             </div>
 
             <div className={styles.gridContainer}>

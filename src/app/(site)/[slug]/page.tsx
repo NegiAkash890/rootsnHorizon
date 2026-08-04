@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { client } from "@/sanity/client";
 import { PortableText } from '@portabletext/react';
+import Image from "next/image";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 
@@ -14,24 +16,7 @@ const ptComponents = {
 
 export const revalidate = 60;
 
-export async function generateStaticParams() {
-    try {
-        const query = `*[_type == "genericPage" || _type == "teamMember"]{ "slug": slug.current }`;
-        const pages = await client.fetch(query);
-
-        return pages.map((page: { slug: string }) => ({
-            slug: page.slug,
-        }));
-    } catch (error) {
-        console.error("Error generating static params for generic pages/team members:", error);
-        return [];
-    }
-}
-
-export default async function GenericPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-
-    // Check for genericPage first
+async function getPageData(slug: string) {
     let query = `*[_type == "genericPage" && slug.current == $slug][0]{
         _type,
         title,
@@ -39,7 +24,6 @@ export default async function GenericPage({ params }: { params: Promise<{ slug: 
     }`;
     let page = await client.fetch(query, { slug });
 
-    // If not found, check for teamMember
     if (!page) {
         query = `*[_type == "teamMember" && slug.current == $slug][0]{
             _type,
@@ -51,6 +35,63 @@ export default async function GenericPage({ params }: { params: Promise<{ slug: 
         page = await client.fetch(query, { slug });
     }
 
+    return page;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    if (!slug) return {};
+    const page = await getPageData(slug);
+    if (!page) return {};
+
+    const title = page.name || page.title || "Roots & Horizon";
+    const description = page.bio || (page.role ? `${page.name} - ${page.role}` : `Read ${title} on Roots & Horizon.`);
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rootsnhorizon.org";
+    const imageUrl = page.image?.asset?.url || `${siteUrl}/icon.png`;
+
+    return {
+        title: title,
+        description: description,
+        openGraph: {
+            title: `${title} | Roots & Horizon`,
+            description: description,
+            url: `${siteUrl}/${slug}`,
+            images: [{ url: imageUrl, alt: title }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: title,
+            description: description,
+            images: [imageUrl],
+        },
+    };
+}
+
+export async function generateStaticParams() {
+    try {
+        const query = `*[_type in ["genericPage", "teamMember"] && defined(slug.current)]{ "slug": slug.current }`;
+        const pages = await client.fetch(query);
+
+        return (pages || [])
+            .map((page: any) => (typeof page.slug === 'string' ? page.slug : page.slug?.current))
+            .filter((slug: any): slug is string => typeof slug === 'string' && slug.trim().length > 0)
+            .map((slug: string) => ({
+                slug,
+            }));
+    } catch (error) {
+        console.error("Error generating static params for generic pages/team members:", error);
+        return [];
+    }
+}
+
+import BackButton from "@/components/BackButton/BackButton";
+
+export default async function GenericPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    if (!slug) return notFound();
+
+    const page = await getPageData(slug);
+
     if (!page) {
         return notFound();
     }
@@ -61,16 +102,19 @@ export default async function GenericPage({ params }: { params: Promise<{ slug: 
             <main className={`container ${styles.page}`}>
                 <div className={styles.teamProfile}>
                     {page.image?.asset?.url && (
-                        <div className={styles.profileImageWrapper}>
-                            <img
+                        <div className={styles.profileImageWrapper} style={{ position: "relative" }}>
+                            <Image
                                 src={page.image.asset.url}
-                                alt={page.name}
+                                alt={page.name || "Team Member"}
+                                fill
                                 className={styles.profileImage}
+                                sizes="200px"
                             />
                         </div>
                     )}
                     <h1 className={styles.title}>{page.name}</h1>
                     <h2 className={styles.subtitle}>{page.role}</h2>
+                    <BackButton fallbackHref="/team" />
                     <div className={styles.content}>
                         <p>{page.bio}</p>
                     </div>
@@ -82,8 +126,9 @@ export default async function GenericPage({ params }: { params: Promise<{ slug: 
     // Default generic page render
     return (
         <main className={`container ${styles.page}`}>
-            <h1 className={styles.title}>{page.title}</h1>
             <div className={styles.content}>
+                <BackButton fallbackHref="/" />
+                <h1 className={styles.title}>{page.title}</h1>
                 <PortableText value={page.content} components={ptComponents} />
             </div>
         </main>

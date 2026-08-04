@@ -1,34 +1,34 @@
-.aboutContainer {
-    padding: 100px 20px;
+.page {
+    min-height: 100vh;
 }
 
-.backLink {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #000;
-    text-decoration: none;
-}
-
-.backIcon {
-    color: var(--primary);
+.header {
+    background-color: var(--primary, #95C11F);
+    color: #FFFFFF;
+    padding: 8rem 0 4rem;
+    text-align: center;
+    width: 100%;
 }
 
 .title {
-    font-size: 4rem;
+    font-size: var(--text-5xl);
     font-weight: 800;
-    margin-bottom: 40px;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+}
+
+.aboutContainer {
+    padding: 3rem 1.25rem 3.75rem 1.25rem;
+    max-width: 50rem;
+    margin: 0 auto;
 }
 
 .mainImageWrapper {
     position: relative;
     width: 100%;
-    height: 400px;
-    margin-bottom: 40px;
-    border-radius: 12px;
+    height: 25rem;
+    margin-bottom: 2.5rem;
+    border-radius: 0.75rem;
     overflow: hidden;
 }
 
@@ -37,27 +37,50 @@
 }
 
 .contentWrapper {
-    max-width: 800px;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     line-height: 1.8;
 }
 
 .sectionHeading {
-    font-size: 2.5rem;
-    margin-top: 60px;
-    margin-bottom: 20px;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    margin-top: 3.125rem;
+    margin-bottom: 1.25rem;
 }
 
 @media (max-width: 768px) {
-    .title {
-        font-size: 2.5rem;
+    .header {
+        padding: 6rem 0 3rem;
     }
 
-    .sectionHeading {
-        font-size: 2rem;
+    .title {
+        font-size: var(--text-3xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5rem 0 2rem;
+    }
+
+    .title {
+        font-size: var(--text-2xl);
     }
 
     .aboutContainer {
-        padding: 60px 20px;
+        padding: 2.5rem 1rem 2.5rem 1rem;
+    }
+
+    .mainImageWrapper {
+        height: 15.625rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contentWrapper {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .sectionHeading {
+        margin-top: 2.25rem;
     }
 }

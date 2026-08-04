@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./ContactForm.module.css";
-import { FaPaperPlane } from "react-icons/fa";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import SendIcon from "@mui/icons-material/Send";
 import { submitContact } from "@/app/actions/contact";
 import SuccessPopup from "./SuccessPopup/SuccessPopup";
 import { sendGAEvent } from "@next/third-parties/google";
+import styles from "./ContactForm.module.css";
 
 interface ContactFormData {
     heading?: string;
@@ -46,7 +49,7 @@ const ContactForm = ({ data }: { data?: ContactFormData }) => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const form = event.currentTarget; // Capture form reference
+        const form = event.currentTarget;
         setErrorMessage("");
         setFieldErrors({});
 
@@ -69,13 +72,12 @@ const ContactForm = ({ data }: { data?: ContactFormData }) => {
                 sendGAEvent({ event: "contact_form_submit", value: "success" });
                 setSubmitterName(result.name || "Friend");
                 setPopupOpen(true);
-                form.reset(); // Reset using captured reference
+                form.reset();
             } else {
                 sendGAEvent({ event: "contact_form_submit", value: "failure" });
                 setErrorMessage(result.message || "An error occurred. Please try again.");
             }
         } catch (error) {
-            // Silently fail or log to analytics, but do not show error message to user as requested
             console.error("Submission error:", error);
         } finally {
             setIsSubmitting(false);
@@ -96,71 +98,89 @@ const ContactForm = ({ data }: { data?: ContactFormData }) => {
 
                 <form className={styles.form} onSubmit={handleSubmit} noValidate>
                     {errorMessage && (
-                        <div className={styles['form__error-message']}>
+                        <Alert severity="error" sx={{ mb: 1, borderRadius: 0 }}>
                             {errorMessage}
-                        </div>
+                        </Alert>
                     )}
 
-                    <div className={styles.form__group}>
-                        <label htmlFor="name" className={styles.form__label}>
-                            Name
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            className={`${styles.form__input} ${fieldErrors.name ? styles.error : ''}`}
-                            placeholder="Your Name"
-                            disabled={isSubmitting}
-                            onChange={() => setFieldErrors(prev => ({ ...prev, name: undefined }))}
-                        />
-                        {fieldErrors.name && <span className={styles['form__error-text']}>{fieldErrors.name}</span>}
-                    </div>
-
-                    <div className={styles.form__group}>
-                        <label htmlFor="email" className={styles.form__label}>
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            className={`${styles.form__input} ${fieldErrors.email ? styles.error : ''}`}
-                            placeholder="your@email.com"
-                            disabled={isSubmitting}
-                            onChange={() => setFieldErrors(prev => ({ ...prev, email: undefined }))}
-                        />
-                        {fieldErrors.email && <span className={styles['form__error-text']}>{fieldErrors.email}</span>}
-                    </div>
-
-                    <div className={styles.form__group}>
-                        <label htmlFor="message" className={styles.form__label}>
-                            Message
-                        </label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            className={`${styles.form__textarea} ${fieldErrors.message ? styles.error : ''}`}
-                            placeholder="How can we help?"
-                            disabled={isSubmitting}
-                            onChange={() => setFieldErrors(prev => ({ ...prev, message: undefined }))}
-                        />
-                        {fieldErrors.message && <span className={styles['form__error-text']}>{fieldErrors.message}</span>}
-                    </div>
-
-                    <button
-                        type="submit"
-                        className={`btn btn-primary ${styles.form__submit}`}
+                    <TextField
+                        fullWidth
+                        id="name"
+                        name="name"
+                        label="Name"
+                        variant="outlined"
+                        placeholder="Your Name"
                         disabled={isSubmitting}
+                        error={!!fieldErrors.name}
+                        helperText={fieldErrors.name}
+                        onChange={() => setFieldErrors(prev => ({ ...prev, name: undefined }))}
+                        sx={{
+                            backgroundColor: "rgba(255, 255, 255, 0.5)",
+                            "& .MuiOutlinedInput-root": {
+                                borderRadius: 0,
+                            }
+                        }}
+                    />
+
+                    <TextField
+                        fullWidth
+                        id="email"
+                        name="email"
+                        label="Email"
+                        type="email"
+                        variant="outlined"
+                        placeholder="your@email.com"
+                        disabled={isSubmitting}
+                        error={!!fieldErrors.email}
+                        helperText={fieldErrors.email}
+                        onChange={() => setFieldErrors(prev => ({ ...prev, email: undefined }))}
+                        sx={{
+                            backgroundColor: "rgba(255, 255, 255, 0.5)",
+                            "& .MuiOutlinedInput-root": {
+                                borderRadius: 0,
+                            }
+                        }}
+                    />
+
+                    <TextField
+                        fullWidth
+                        id="message"
+                        name="message"
+                        label="Message"
+                        variant="outlined"
+                        placeholder="How can we help?"
+                        multiline
+                        rows={6}
+                        disabled={isSubmitting}
+                        error={!!fieldErrors.message}
+                        helperText={fieldErrors.message}
+                        onChange={() => setFieldErrors(prev => ({ ...prev, message: undefined }))}
+                        sx={{
+                            backgroundColor: "rgba(255, 255, 255, 0.5)",
+                            "& .MuiOutlinedInput-root": {
+                                borderRadius: 0,
+                            }
+                        }}
+                    />
+
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={isSubmitting}
+                        endIcon={<SendIcon />}
+                        sx={{
+                            alignSelf: "flex-start",
+                            width: "100%",
+                            mt: 1,
+                            boxShadow: "none",
+                            "&:hover": {
+                                boxShadow: "none",
+                            }
+                        }}
                     >
-                        {isSubmitting ? (
-                            "Sending..."
-                        ) : (
-                            <>
-                                Send Message &nbsp; <FaPaperPlane />
-                            </>
-                        )}
-                    </button>
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                    </Button>
                 </form>
             </div>
         </section>
