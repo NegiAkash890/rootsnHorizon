@@ -104,7 +104,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
 
     return (
         <AppBar position="fixed" sx={{ backgroundColor: "#000000", borderBottom: "1px solid var(--border)", boxShadow: "none" }}>
-            <Toolbar sx={{ height: "var(--header-height)", minHeight: "var(--header-height)", display: "flex", justifyContent: "space-between", px: { xs: 2, lg: 4 } }}>
+            <Toolbar sx={{ height: { xs: 70, md: 80 }, minHeight: { xs: "70px !important", md: "80px !important" }, display: "flex", justifyContent: "space-between", px: { xs: 2, lg: 4 } }}>
                 {bankDetails && (
                     <BankDetailsModal
                         isOpen={isDonationOpen}
@@ -123,12 +123,12 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     zIndex: 1,
                 }}>
                     <Link href="/" style={{ display: "flex", alignItems: "center" }}>
-                        <Box sx={{ width: { xs: 55, md: 80 }, height: { xs: 55, md: 80 }, position: "relative" }}>
+                        <Box sx={{ width: { xs: 50, md: 60 }, height: { xs: 50, md: 60 }, position: "relative", overflow: "hidden", borderRadius: "50%" }}>
                             <Image
                                 src="/logo.jpg"
                                 alt="Roots & Horizon Logo"
                                 fill
-                                style={{ objectFit: "contain" }}
+                                style={{ objectFit: "cover" }}
                                 priority
                             />
                         </Box>
