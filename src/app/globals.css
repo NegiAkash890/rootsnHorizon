@@ -139,6 +139,11 @@ a:hover {
   color: var(--primary-hover);
 }
 
+:focus-visible {
+  outline: 3px solid var(--primary, #95C11F);
+  outline-offset: 2px;
+}
+
 button {
   font-family: var(--font-heading);
   cursor: pointer;

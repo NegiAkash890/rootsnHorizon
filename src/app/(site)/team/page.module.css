@@ -4,7 +4,7 @@
 
 .header {
     background-color: var(--primary);
-    color: var(--text-inverted);
+    color: #000000;
     padding: calc(var(--header-height) + 2.5rem) 1.25rem 2.5rem 1.25rem;
     text-align: center;
 }
@@ -12,6 +12,7 @@
 .title {
     font-size: var(--text-5xl);
     margin-bottom: 1rem;
+    color: #000000;
 }
 
 .description {
