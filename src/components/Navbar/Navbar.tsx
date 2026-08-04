@@ -104,7 +104,16 @@ const Navbar = ({ data }: { data: NavbarData }) => {
 
     return (
         <AppBar position="fixed" sx={{ backgroundColor: "#000000", borderBottom: "1px solid var(--border)", boxShadow: "none" }}>
-            <Toolbar sx={{ height: { xs: 70, md: 80 }, minHeight: { xs: "70px !important", md: "80px !important" }, display: "flex", justifyContent: "space-between", px: { xs: 2, lg: 4 } }}>
+            <Toolbar sx={{
+                width: "100%",
+                maxWidth: "var(--container-width, 75rem)",
+                mx: "auto",
+                height: { xs: 70, md: 80 },
+                minHeight: { xs: "70px !important", md: "80px !important" },
+                display: "flex",
+                justifyContent: "space-between",
+                px: { xs: 2.5, sm: 3, md: 4 },
+            }}>
                 {bankDetails && (
                     <BankDetailsModal
                         isOpen={isDonationOpen}
