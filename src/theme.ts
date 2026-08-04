@@ -55,24 +55,28 @@ const theme = createTheme({
             transform: 'translateY(-2px)',
           },
         },
-        containedPrimary: {
-          backgroundColor: '#95C11F',
-          color: '#FFFFFF',
-          '&:hover': {
-            backgroundColor: '#739618',
+        contained: ({ ownerState }) => ({
+          ...(ownerState.color === 'primary' && {
+            backgroundColor: '#95C11F',
             color: '#FFFFFF',
-          },
-        },
-        outlinedPrimary: {
-          borderColor: '#95C11F',
-          color: '#95C11F',
-          backgroundColor: 'transparent',
-          '&:hover': {
-            borderColor: '#739618',
-            color: '#739618',
-            backgroundColor: 'rgba(149, 193, 31, 0.08)',
-          },
-        },
+            '&:hover': {
+              backgroundColor: '#739618',
+              color: '#FFFFFF',
+            },
+          }),
+        }),
+        outlined: ({ ownerState }) => ({
+          ...(ownerState.color === 'primary' && {
+            borderColor: '#95C11F',
+            color: '#95C11F',
+            backgroundColor: 'transparent',
+            '&:hover': {
+              borderColor: '#739618',
+              color: '#739618',
+              backgroundColor: 'rgba(149, 193, 31, 0.08)',
+            },
+          }),
+        }),
       },
     },
     MuiFab: {
