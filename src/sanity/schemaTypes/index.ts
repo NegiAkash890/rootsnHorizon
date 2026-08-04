@@ -13,9 +13,11 @@ import { eventsSection } from './eventsSection'
 import { testimonial } from './testimonial'
 import { testimonialsSection } from './testimonialsSection'
 import { teamPage } from './teamPage'
+import { seo } from './seo'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
     types: [
+        seo,
         homepage,
         navbar,
         footer,

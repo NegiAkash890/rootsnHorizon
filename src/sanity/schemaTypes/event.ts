@@ -63,6 +63,7 @@ export const event = defineType({
             title: 'Description',
             type: 'text',
         }),
+        defineField({ name: 'seo', title: 'SEO & Social Overrides', type: 'seo' }),
     ],
     preview: {
         select: {

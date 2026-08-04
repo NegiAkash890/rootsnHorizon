@@ -29,5 +29,6 @@ export const genericPage = defineType({
                 { type: 'image' }
             ]
         }),
+        defineField({ name: 'seo', title: 'SEO & Social Overrides', type: 'seo' }),
     ],
 })

@@ -75,6 +75,7 @@ export const story = defineType({
             type: 'array',
             of: [{ type: 'block' }]
         }),
+        defineField({ name: 'seo', title: 'SEO & Social Overrides', type: 'seo' }),
     ]
 })
 
