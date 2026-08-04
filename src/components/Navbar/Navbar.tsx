@@ -99,11 +99,12 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                 width: "100%",
                 maxWidth: "var(--container-width, 75rem)",
                 mx: "auto",
-                height: { xs: 70, md: 80 },
-                minHeight: { xs: "70px !important", md: "80px !important" },
+                height: { xs: 70, md: 90 },
+                minHeight: { xs: "70px !important", md: "90px !important" },
                 display: "flex",
                 justifyContent: "space-between",
                 px: { xs: 2.5, sm: 3, md: 4 },
+                py: { xs: 0, md: 1.5 },
             }}>
                 {bankDetails && (
                     <BankDetailsModal
