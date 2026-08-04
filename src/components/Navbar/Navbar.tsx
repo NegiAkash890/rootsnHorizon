@@ -102,7 +102,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                 height: { xs: 70, md: 80 },
                 minHeight: { xs: "70px !important", md: "80px !important" },
                 display: "flex",
-                justify: "space-between",
+                justifyContent: "space-between",
                 px: { xs: 2.5, sm: 3, md: 4 },
             }}>
                 {bankDetails && (
