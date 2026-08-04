@@ -47,7 +47,7 @@
   width: 100%;
   max-width: var(--container-width, 75rem);
   margin: 0 auto;
-  padding: calc(var(--header-height) + 0.15rem) 1.25rem 1.5rem 1.25rem;
+  padding: 1rem 1.25rem 1.5rem 1.25rem;
   align-items: center;
   gap: 2.5rem;
 }
@@ -73,7 +73,7 @@
 @media (max-width: 900px) {
   .topSection {
     flex-direction: column;
-    padding: calc(var(--header-height) + 0.1rem) 1rem 1rem 1rem;
+    padding: 0.5rem 1rem 1rem 1rem;
     gap: 1.25rem;
   }
 

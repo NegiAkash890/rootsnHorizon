@@ -5,14 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -87,7 +79,6 @@ const Navbar = ({ data }: { data: NavbarData }) => {
     const cta = data?.cta || { label: "Donate", href: "/donate" };
     const bankDetails = data?.bankDetails;
 
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isDonationOpen, setIsDonationOpen] = useState(false);
 
     const handleDonateClick = (e: React.MouseEvent) => {
@@ -111,7 +102,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                 height: { xs: 70, md: 80 },
                 minHeight: { xs: "70px !important", md: "80px !important" },
                 display: "flex",
-                justifyContent: "space-between",
+                justify: "space-between",
                 px: { xs: 2.5, sm: 3, md: 4 },
             }}>
                 {bankDetails && (
@@ -129,6 +120,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     transform: { xs: 'translateX(-50%)', md: 'none' },
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: { xs: 'center', md: 'flex-start' },
                     zIndex: 1,
                 }}>
                     <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
@@ -157,7 +149,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     </Link>
                 </Box>
 
-                {/* Desktop Navigation Links */}
+                {/* Navigation Links */}
                 <Box sx={{ display: { xs: "none", md: "flex" }, gap: 4, height: "100%", alignItems: "center" }}>
                     {navLinks.map((link, index) => (
                         <Link key={index} href={link.href} passHref legacyBehavior>
@@ -186,7 +178,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                     ))}
                 </Box>
 
-                {/* Desktop Action (Donate Button) */}
+                {/* Action (Donate Button) */}
                 <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
                     <Button
                         component={bankDetails ? "button" : Link}
@@ -198,109 +190,16 @@ const Navbar = ({ data }: { data: NavbarData }) => {
                         sx={{
                             fontFamily: "var(--font-primary)",
                             fontWeight: 900,
-                            px: 4,
-                            py: 1.5,
-                            fontSize: "1rem",
+                            px: { xs: 2, md: 4 },
+                            py: 1.25,
+                            fontSize: { xs: "0.875rem", md: "1rem" },
                             borderRadius: 0,
                         }}
                     >
                         {cta.label}
                     </Button>
                 </Box>
-
-                {/* Mobile Menu Icon */}
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="end"
-                    onClick={() => setIsMobileMenuOpen(true)}
-                    sx={{ display: { xs: "flex", md: "none" }, ml: 'auto' }}
-                >
-                    <MenuIcon />
-                </IconButton>
             </Toolbar>
-
-            {/* Mobile Navigation Drawer */}
-            <Drawer
-                anchor="right"
-                open={isMobileMenuOpen}
-                onClose={() => setIsMobileMenuOpen(false)}
-                slotProps={{
-                    paper: {
-                        sx: {
-                            width: 280,
-                            backgroundColor: "#000000",
-                            color: "#FFFFFF",
-                            borderLeft: "1px solid var(--border)",
-                            p: 3,
-                        },
-                    },
-                }}
-            >
-                <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 3 }}>
-                    <IconButton color="inherit" onClick={() => setIsMobileMenuOpen(false)}>
-                        <CloseIcon />
-                    </IconButton>
-                </Box>
-
-                <List sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                    {navLinks.map((link, index) => (
-                        <ListItem key={index} disablePadding>
-                            <Link href={link.href} passHref legacyBehavior>
-                                <ListItemButton
-                                    component="a"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    sx={{
-                                        p: 1.5,
-                                        borderRadius: 0,
-                                        "&:hover": {
-                                            backgroundColor: "rgba(255, 255, 255, 0.08)",
-                                        },
-                                    }}
-                                >
-                                    <ListItemText
-                                        primary={
-                                            <Typography
-                                                sx={{
-                                                    fontFamily: "var(--font-primary)",
-                                                    fontWeight: 700,
-                                                    fontSize: "1.1rem",
-                                                    letterSpacing: "0.05em",
-                                                }}
-                                            >
-                                                {link.label}
-                                            </Typography>
-                                        }
-                                    />
-                                </ListItemButton>
-                            </Link>
-                        </ListItem>
-                    ))}
-                </List>
-
-                <Box sx={{ mt: 4 }}>
-                    <Button
-                        component={bankDetails ? "button" : Link}
-                        href={bankDetails ? undefined : cta.href}
-                        onClick={(e: React.MouseEvent) => {
-                            handleDonateClick(e);
-                            setIsMobileMenuOpen(false);
-                        }}
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        endIcon={<FavoriteIcon />}
-                        sx={{
-                            fontFamily: "var(--font-primary)",
-                            fontWeight: 900,
-                            py: 2,
-                            borderRadius: 0,
-                        }}
-                    >
-                        {cta.label}
-                    </Button>
-                </Box>
-            </Drawer>
         </AppBar>
     );
 };
