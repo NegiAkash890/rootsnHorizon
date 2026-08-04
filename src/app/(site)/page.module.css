@@ -72,7 +72,7 @@
   .topSection {
     flex-direction: column;
     position: relative;
-    min-height: 100vw;
+    min-height: 100%;
     /* Context for absolute positioning */
   }
 
