@@ -5,7 +5,7 @@
 .header {
     background-color: var(--primary);
     color: var(--text-inverted);
-    padding: 8rem 0 4rem;
+    padding: calc(var(--header-height) + 2.5rem) 1.25rem 2.5rem 1.25rem;
     text-align: center;
 }
 

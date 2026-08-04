@@ -1,5 +1,5 @@
 .storiesPage {
-    padding-top: 110px;
+    padding-top: var(--header-height);
 }
 
 .hero {
@@ -121,7 +121,7 @@
 
 @media (max-width: 600px) {
     .storiesPage {
-        padding-top: 85px;
+        padding-top: var(--header-height);
     }
 
     .hero {

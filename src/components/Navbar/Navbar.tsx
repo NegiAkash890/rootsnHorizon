@@ -104,7 +104,7 @@ const Navbar = ({ data }: { data: NavbarData }) => {
 
     return (
         <AppBar position="fixed" sx={{ backgroundColor: "#000000", borderBottom: "1px solid var(--border)", boxShadow: "none" }}>
-            <Toolbar sx={{ height: { xs: 70, md: 100 }, display: "flex", justifyContent: "space-between", px: { xs: 2, lg: 4 } }}>
+            <Toolbar sx={{ height: "var(--header-height)", minHeight: "var(--header-height)", display: "flex", justifyContent: "space-between", px: { xs: 2, lg: 4 } }}>
                 {bankDetails && (
                     <BankDetailsModal
                         isOpen={isDonationOpen}
